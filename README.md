@@ -1,16 +1,26 @@
-# boilerplate
-This project is a boilerplate for rapid development ontop of the steem network.
+# Steemit.lol
+You can use Steemit.LOL to create original memes and post them to the Steem Blockchain. Our in-house moderator team will determine which memes get published and which memes get hidden.
+Bring your dankest original memes and get published today!
 
-## What does it include
-This boilerplate includes.
+## Steemit.lol Edits
 - Authenticate with SteemConnect/Logout
 - Trending + latest post feeds
+// change to only show memes from steemit.lol
 - Logged In user profile + 'my blog' feed
+// change to show only published memes in feed
 - @username page with profile info + blog feed
+// Change to show only published memes in profile
 - Create Top Level Post
+// Add Meme Generator & memes
 - Upvote Top Level Post from feed
+// change to slider (-100 & +100; increments of 20%)
 - Single Page for posts + comments thread
 - Upvote + comment on single page
+
+## Steemit.lol Updates
+- All post submissions go to Pending category.
+- Once voted by a moderator, send to Published
+- Add Steemit.lol Votebot (Upvote Published Posts Only)
 
 ## setup & install
 - install node.js & NPM - [https://nodejs.org/en/](https://nodejs.org/en/)

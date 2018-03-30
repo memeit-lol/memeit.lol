@@ -1,6 +1,10 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  a(href="/auth") Login With SteemConnect
+  include partials/nav2
+  
+  main
+  h1= "Welcome to Steemit.LOL"
+  body
+  p You can use Steemit.LOL to create original memes and post them to the Steem Blockchain.<br> Our in-house moderator team will determine which memes get published and which memes get hidden.<br> Bring your dankest original memes and get published today!
+  h4 #[a(href="/auth") Login with Steemconnect] or #[a(href="steemit.com/signup") Sign up Now!]

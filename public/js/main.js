@@ -30,7 +30,7 @@ function getMoreContent(filter, tag){
   let query = {
       'tag':
       tag,
-      'limit': 24,
+      'limit': 25,
       start_author: lastItem.author,
       start_permlink: lastItem.permlink }
 
