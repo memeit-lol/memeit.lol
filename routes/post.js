@@ -19,19 +19,19 @@ router.post('/create-post', util.isAuthenticated, (req, res) => {
     let title = req.body.title
     let body = req.body.post
 
-    steem.comment('', primaryTag, author, permlink, title, body, '', (err, steemResponse) => {
-        if (err) {
-          res.render('post', {
-            name: req.session.steemconnect.name,
-            msg: 'Error'
-          })
-        } else {
-          res.render('post', {
-            name: req.session.steemconnect.name,
-            msg: 'Posted To Steem Network'
-          })
-        }
-    });
+    // steem.comment('', primaryTag, author, permlink, title, body, '', (err, steemResponse) => {
+    //     if (err) {
+    //       res.render('post', {
+    //         name: req.session.steemconnect.name,
+    //         msg: 'Error'
+    //       })
+    //     } else {
+    //       res.render('post', {
+    //         name: req.session.steemconnect.name,
+    //         msg: 'Posted To Steem Network'
+    //       })
+    //     }
+    // });
 });
 
 router.post('/vote', util.isAuthenticated, (req, res) => {
