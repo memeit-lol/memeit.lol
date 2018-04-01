@@ -14,24 +14,23 @@ router.post('/create-post', util.isAuthenticated, (req, res) => {
     let author = req.session.steemconnect.name
     let permlink = util.urlString()
     var tags = req.body.tags.split(',').map(item => item.trim());
-    let primaryTag = tags[0] || 'photography'
-    let otherTags = tags.slice(1)
-    let title = req.body.title
-    let body = req.body.post
-
-    // steem.comment('', primaryTag, author, permlink, title, body, '', (err, steemResponse) => {
-    //     if (err) {
-    //       res.render('post', {
-    //         name: req.session.steemconnect.name,
-    //         msg: 'Error'
-    //       })
-    //     } else {
-    //       res.render('post', {
-    //         name: req.session.steemconnect.name,
-    //         msg: 'Posted To Steem Network'
-    //       })
-    //     }
-    // });
+    let primaryTag = "steemitlol";
+    let otherTags = tags.slice(1, 4);
+    let title = req.body.title;
+    let body = req.body.post;
+    steem.broadcast([['comment', {parent_author: "", parent_permlink: primaryTag, author, permlink, title, body, json_metadata: JSON.stringify({app: 'steemit.lol/0.0.1', tags: [primaryTag, ...otherTags], image: ['https://steemit.lol/photos/images/'+req.body.image]})}], ['comment_options', {author, permlink, max_accepted_payout: "1000000.000 SBD", percent_steem_dollars: 10000, allow_votes: true, allow_curation_rewards: true, extensions: [0, {beneficiaries: [{account: "steemit.lol", weight: 1000}, {account: "lol.pay", weight: 1500}]}]}]], function(err, response) {
+      if (err) {
+        res.render('post', {
+          name: req.session.steemconnect.name,
+          msg: 'Error'
+        })
+      } else {
+        res.render('post', {
+          name: req.session.steemconnect.name,
+          msg: 'Posted To Steem Network'
+        })
+      }
+    });
 });
 
 router.post('/vote', util.isAuthenticated, (req, res) => {

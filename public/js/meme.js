@@ -4,9 +4,11 @@ var img = document.getElementById("img1");
 var img2 = document.getElementById("img2");
 var top2 = document.getElementById("top");
 var bottom = document.getElementById("bottom");
-var submit = document.getElementById("submit");
+var submit = document.getElementById("submitBTN");
 var fontSize = 50;
-var url = "https://steemit.lol:8080/1_Okay_Guy.jpg";
+var url = "https://steemit.lol/photos/memes/1_Okay_Guy.jpg";
+var image = document.getElementById("image");
+var form = document.getElementById("form");
 
 function draw() {
   img.crossOrigin = "anonymous";
@@ -82,11 +84,9 @@ top.addEventListener("keyup", draw);
 bottom.addEventListener("keyup", draw);
 submit.addEventListener("click", function(e) {
   e.preventDefault();
-  $.ajax({
-    url: window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/photos/images/",
-    method: "POST",
-    data: {image: canvas.toDataURL()},
-    dataType: "png"
-  })
+  $.post(window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/photos/images/", {image: canvas.toDataURL()}, function(data) {
+    image.value = data.filename;
+    form.submit();
+  });
 });
 draw();

@@ -5,7 +5,7 @@ block content
   
   main
     h1 Create Post
-    form(action="/post/create-post/" method="post")
+    form(action="/post/create-post/" method="post" id="form")
       label Title
       input(type="text" name="title")
       label Top
@@ -18,7 +18,8 @@ block content
       img(id="img2")
       label Tags
       input(type="text" name="tags")
-      button(id="submit") Submit
+      input(type="hidden" name="image" id="image")
+      button(id="submitBTN") Submit
       p Posting as #{name}
       p #{msg}
   script(src="/js/meme.js")
