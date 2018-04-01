@@ -23,7 +23,8 @@ router.post('/create-post', util.isAuthenticated, (req, res) => {
         res.render('post', {
           name: req.session.steemconnect.name,
           msg: 'Error'
-        })
+        });
+	console.log(err);
       } else {
         res.render('post', {
           name: req.session.steemconnect.name,
