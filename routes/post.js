@@ -15,13 +15,14 @@ router.get('/', util.isAuthenticated, (req, res, next) => {
 });
 
 router.post('/create-post', util.isAuthenticated, (req, res) => {
+  var images = fs.readdirSync("./memes");
     let author = req.session.steemconnect.name
     let permlink = util.urlString()
     var tags = req.body.tags.split(',').map(item => item.trim());
     let primaryTag = "steemitlol";
     let otherTags = tags.slice(1, 4);
     let title = req.body.title;
-    let body = req.body.post;
+    let body = req.body.image;
     let done = false;
     delegator.getWeights("steemit.lol", function(data) {
       if(!done) {
@@ -33,13 +34,15 @@ router.post('/create-post', util.isAuthenticated, (req, res) => {
           if (err) {
             res.render('post', {
               name: req.session.steemconnect.name,
-              msg: 'Error'
+              msg: 'Error',
+              images
             });
             console.log(err);
           } else {
             res.render('post', {
               name: req.session.steemconnect.name,
-              msg: 'Posted To Steem Network'
+              msg: 'Posted To Steem Network',
+              images
             })
           }
         });
