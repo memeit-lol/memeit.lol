@@ -8,11 +8,11 @@ block content
     form(action="/post/create-post/" method="post" id="form")
       label Title
       input(type="text" name="title")
-      label Image
-      div(class="collapse" id="collapseExample")
-        div(class="card card-body")
+      label Images
+      div(class="collapse show" id="collapseExample")
+        div(class="card card-body" style="display: flex; flex-wrap: wrap; flex-direction: row; justify-content: space-evenly;")
           each image in images
-            img(src=image)
+            img(src=`https://steemit.lol/photos/memes/thumbnail/${image}` width="50" height="50" onclick=`window.change('https://steemit.lol/photos/memes/thumbnail/${image}');`)
       label Top
       input(type="text" id="top")
       label Bottom
