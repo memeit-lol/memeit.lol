@@ -6,9 +6,13 @@ var top2 = document.getElementById("top");
 var bottom = document.getElementById("bottom");
 var submit = document.getElementById("submitBTN");
 var fontSize = 50;
-var url = "https://steemit.lol/photos/memes/1_Okay_Guy.jpg";
+var url = "https://steemit.lol/photos/memes/thumbnail/1_Okay_Guy.jpg";
 var image = document.getElementById("image");
 var form = document.getElementById("form");
+
+function change(url) {
+  url = url;
+}
 
 function draw() {
   img.crossOrigin = "anonymous";
@@ -16,7 +20,7 @@ function draw() {
     drawMeme();
     img2.src = canvas.toDataURL();
   };
-  img.src = url;
+  img.src = url.replace("/thumbnail");
 }
 
 function drawMeme() {

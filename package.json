@@ -15,14 +15,12 @@
     "express-session": "^1.15.6",
     "jimp": "^0.2.28",
     "morgan": "~1.9.0",
+    "node-json-db": "^0.7.5",
     "pug": "2.0.0-beta11",
     "sc2-sdk": "^1.0.2",
     "serve-favicon": "~2.4.5",
-<<<<<<< Updated upstream
     "steem": "^0.7.1",
-=======
     "steemconnect": "0.0.35",
->>>>>>> Stashed changes
     "uuid": "^3.2.1"
   }
 }

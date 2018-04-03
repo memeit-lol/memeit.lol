@@ -21,7 +21,6 @@ router.post("/", (req, res) => {
   let image = req.body.image;
   let data = image.replace(/^data:image\/\w+;base64,/, '');
   let name = uuid() + ".png";
-  console.log(__dirname);
   fs.writeFileSync("./images/" + name, data, {encoding: "base64"});
   res.json({filename: name});
 });

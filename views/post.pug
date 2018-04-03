@@ -8,6 +8,11 @@ block content
     form(action="/post/create-post/" method="post" id="form")
       label Title
       input(type="text" name="title")
+      label Image
+      div(class="collapse" id="collapseExample")
+        div(class="card card-body")
+          each image in images
+            img(src=image)
       label Top
       input(type="text" id="top")
       label Bottom
