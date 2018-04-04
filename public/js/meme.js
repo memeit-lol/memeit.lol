@@ -89,7 +89,7 @@ top.addEventListener("keyup", draw);
 bottom.addEventListener("keyup", draw);
 submit.addEventListener("click", function(e) {
   e.preventDefault();
-  $.post(window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/photos/images/", {image: canvas.toDataURL()}, function(data) {
+  $.post("https://steemit.lol/photos/images/", {image: canvas.toDataURL()}, function(data) {
     image.value = data.filename;
     form.submit();
   });
