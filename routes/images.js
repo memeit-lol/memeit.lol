@@ -9,7 +9,7 @@ router.get('/:name', (req, res, next) => {
   jimp.read("./images/"+req.params.name, (err, re) => {
     if(!err) {
       let scale = re.bitmap.width / re.bitmap.height;
-      re.resize(600*scale,600)   
+      re.resize(300*scale,300)   
         .getBuffer(jimp.MIME_PNG, (err, buff) => {
           res.send(buff);
         });
