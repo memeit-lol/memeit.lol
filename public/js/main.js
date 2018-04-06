@@ -35,8 +35,9 @@ function getLatest(query, initial){
           filteredResults.push(result[i]);
        }
     }
-      displayContent(filteredResults, initial)
-      getaccounts(filteredResults.map(post => post.author))
+    
+      displayContent(filteredResults, initial);
+      getaccounts(filteredResults.map(post => post.author));
     } else {
       console.log(err);
     }
@@ -65,6 +66,7 @@ function getBlog(username){
     limit: 10
   }
   steem.api.getDiscussionsByBlog(query, (err, result) => {
+    
       displayContent(result)
   })
 }
