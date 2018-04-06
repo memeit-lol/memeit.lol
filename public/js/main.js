@@ -67,14 +67,14 @@ function getBlog(username){
   }
   steem.api.getDiscussionsByBlog(query, (err, result) => {
     var filteredResults = [];
-      for (i=0;i < result.length; i++)
+    for (i=0;i < result.length; i++)
+    {
+      if (JSON.parse(result[i].json_metadata).app == "steemit.lol/0.0.1")
       {
-        if (JSON.parse(result[i].json_metadata).app == "steemit.lol/0.0.1")
-       {
-          filteredResults.push(result[i]);
-       }
+        filteredResults.push(result[i]);
       }
-      displayContent(filteredResults)
+    }
+    displayContent(filteredResults)
   })
 }
 
