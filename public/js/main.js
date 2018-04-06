@@ -67,12 +67,12 @@ function getUserFeed(username){
 
       if (JSON.parse(result[i].json_metadata).app == "steemit.lol/0.0.1")
       {
-        filteredResults.push(result[i])
+        filteredResults.push(result[i]);
       }
       
     }
-    console.log(filteredResults)
-    displayContent(filteredResults)
+    console.log(filteredResults);
+    displayContent(filteredResults);
   });
 }
 
