@@ -60,7 +60,19 @@ function getUserFeed(username){
   }
   steem.api.getDiscussionsByFeed(query, (err, result) => {
     console.log(result)
-    displayContent(result)
+
+    var filteredResults = new Array;
+    for (i=0;i < result.length; i++)
+    {
+
+      if (JSON.parse(result[i].json_metadata).app == "steemit.lol/0.0.1")
+      {
+        filteredResults.push(result[i])
+      }
+      
+    }
+    console.log(filteredResults)
+    displayContent(filteredResults)
   });
 }
 
@@ -270,7 +282,7 @@ getAccountInfo = (username) => {
 
     let totalVestingShares, totalVestingFundSteem;
     let userInfo;
-
+    
     steem.api.getDynamicGlobalProperties((err, result) => {
       totalVestingShares = result.total_vesting_shares;
       totalVestingFundSteem = result.total_vesting_fund_steem;
