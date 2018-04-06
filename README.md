@@ -17,7 +17,7 @@ Acceptable submissions in the development category include (1)Bug Fixes; (2)New 
    * Trivial code snippets, example code or simple templates will not be accepted.
    * Bug Fixes and New Features must be submitted via Pull Requests. The Pull Request must have been merged within the past 14 days.
    * Updates on Own Projects can be committed directly, without a Pull Request. Commits must not be older than 14 days.
-   * Bug Fixes for contributor’s Own Projects will not be accepted, unless the Bugs were caused by third party dependencies.
+   * Bug Fixes for contributorï¿½s Own Projects will not be accepted, unless the Bugs were caused by third party dependencies.
    * The repository must contain a readme file with usage and install instructions, as well as an appropriate open source license.
 
 ### Bug Hunting Rules
@@ -66,7 +66,3 @@ Be sure to include the github repository AND the related information necessary t
 - navigate to localhost:3000 in your browser
 - click on the blue 'login with steemconnect to authenticate your app'
 
-![LOGIN](https://i.imgsafe.org/66/6654933f96.png)
-![USER PROFILE](https://i.imgsafe.org/66/6654936f6a.png)
-![FEED](https://i.imgsafe.org/66/665480732c.png)
-![CREATE POST](https://i.imgsafe.org/66/66547d678e.png)
