@@ -31,10 +31,10 @@ function getLatest(query, initial){
       for (i=0;i < result.length; i++)
       {
         if (JSON.parse(result[i].json_metadata).app == "steemit.lol/0.0.1")
-        {
+       {
           filteredResults.push(result[i]);
        }
-    }
+      }
     
       displayContent(filteredResults, initial);
       getaccounts(filteredResults.map(post => post.author));
@@ -66,8 +66,15 @@ function getBlog(username){
     limit: 10
   }
   steem.api.getDiscussionsByBlog(query, (err, result) => {
-    
-      displayContent(result)
+    var filteredResults = [];
+      for (i=0;i < result.length; i++)
+      {
+        if (JSON.parse(result[i].json_metadata).app == "steemit.lol/0.0.1")
+       {
+          filteredResults.push(result[i]);
+       }
+      }
+      displayContent(filteredResults)
   })
 }
 
