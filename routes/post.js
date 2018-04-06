@@ -1,36 +1,53 @@
 let express = require('express');
 let util = require('../modules/util');
 let steem = require('../modules/steemconnect')
+let delegator = require('../modules/delegators')
 let router = express.Router();
-
+let db = require("../modules/db");
+let fs = require("fs");
 
 router.get('/', util.isAuthenticated, (req, res, next) => {
+  var images = fs.readdirSync("./memes");
     res.render('post', {
-      name: req.session.steemconnect.name
+      name: req.session.steemconnect.name,
+      images
     });
 });
 
 router.post('/create-post', util.isAuthenticated, (req, res) => {
+  var images = fs.readdirSync("./memes");
     let author = req.session.steemconnect.name
     let permlink = util.urlString()
     var tags = req.body.tags.split(',').map(item => item.trim());
-    let primaryTag = tags[0] || 'photography'
-    let otherTags = tags.slice(1)
-    let title = req.body.title
-    let body = req.body.post
-
-    steem.comment('', primaryTag, author, permlink, title, body, '', (err, steemResponse) => {
-        if (err) {
-          res.render('post', {
-            name: req.session.steemconnect.name,
-            msg: 'Error'
-          })
-        } else {
-          res.render('post', {
-            name: req.session.steemconnect.name,
-            msg: 'Posted To Steem Network'
-          })
+    let primaryTag = "steemitlol";
+    let otherTags = tags.slice(1, 4);
+    let title = req.body.title;
+    let body = req.body.image;
+    let done = false;
+    delegator.getWeights("steemit.lol", function(data) {
+      if(!done) {
+        let ben = [];
+        for(let key in data) {
+          ben.push({"account": key, "weight": data[key]});
         }
+        steem.broadcast([['comment', {"parent_author": "", "parent_permlink": primaryTag, "author": author, "permlink": permlink, "title": title, "body": `<img src="https://steemit.lol/photos/images/${req.body.image}" />`, "json_metadata": JSON.stringify({app: 'steemit.lol/0.0.1', tags: [primaryTag, ...otherTags], image: ['https://steemit.lol/photos/images/'+req.body.image]})}], ['comment_options', {"author": author, "permlink": permlink, "max_accepted_payout": "1000000.000 SBD", "percent_steem_dollars": 10000, "allow_votes": true, "allow_curation_rewards": true, "extensions": [[0, {"beneficiaries": ben}]]}]], function(err, response) {
+          if (err) {
+            res.render('post', {
+              name: req.session.steemconnect.name,
+              msg: 'Error',
+              images
+            });
+            console.log(err);
+          } else {
+            res.render('post', {
+              name: req.session.steemconnect.name,
+              msg: 'Posted To Steem Network',
+              images
+            })
+          }
+        });
+        done = true;
+      }
     });
 });
 

@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  include partials/nav2
+  
+  main
+    h1= "Support 🚀 Steemit.LOL"
+    body
+    p Become a Steemit.LOL supporter and receive proceeds from memes generated on Steemit.LOL!
+    h2= ""
+    p On Steemit.LOL, 12% of the rewards of every post are distributed among our supporters. 
+    p To become gain benefits from this system, all you have to do is to delegate Steem Power to Steemit.LOL. The more Steem Power you delegate, the higher your chance to be rewarded. The Steemit.LOL bot uses the collected Steem Power to upvote submissions. Moderators control the bots upvotes based on their combined input on posts. Become a Supporter (coming soon)
+    ul
+      each supporter in delegators
+        li
+          h3= supporter.delegator

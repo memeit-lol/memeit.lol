@@ -6,13 +6,26 @@ body {
 }
 
 a {
-  /*color: #00B7FF;
-  margin: 0 20px 20px 0;
-  display: inline-block;*/
+  /* margin: 0 20px 20px 0;
+  display: inline-block; */
+}
+
+.nav-link {
+  color: #eeeeee !important;
+}
+
+.nav-btn {
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+  background-color: #F26D91 !important;
+}
+
+.navbar-dark {
+  background-color: #5CACF2 !important;
 }
 
 main, aside {
-  padding: 30px 0;
+  padding: 30px 15px;
   max-width: 520px;
   margin: 0 auto;
 }

@@ -1,5 +1,6 @@
 let express = require('express');
 let router = express.Router();
+let delegatorsScript = require("../modules/delegators");
 
 /* GET home page. */
 router.get('/', (req, res, next) =>  {
@@ -12,10 +13,21 @@ router.get('/', (req, res, next) =>  {
 
 router.get('/@:username?', (req, res, next) => {
       let username = req.params.username
-      console.log(username)
       res.render('profile', {
         name: username
       });
+});
+
+router.get("/faq", (req, res, next) => {
+  res.render('faq');
+});
+
+router.get("/supporters", (req, res, next) => {
+  delegatorsScript.loadDelegations("steemit.lol", function(delegators) {
+    res.render('supporters', {
+      delegators
+    });
+  });
 });
 
 router.get('/:category/@:username/:permlink', (req, res, next) => {

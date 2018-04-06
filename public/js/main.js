@@ -1,5 +1,7 @@
 let allUsers = []
 let allContent = []
+let lastAuthor = "";
+let lastPermlink = "";
 let converter = new showdown.Converter({ tables: true })
 
 function getTrending(query, initial){
@@ -31,8 +33,8 @@ function getMoreContent(filter, tag){
       'tag':
       tag,
       'limit': 25,
-      start_author: lastItem.author,
-      start_permlink: lastItem.permlink }
+      start_author: lastAuthor,
+      start_permlink: lastPermlink }
 
       if(filter === 'trending'){
         getTrending(query, false)
@@ -67,7 +69,8 @@ function displayContent(result, initial){
   for (let i = 0; i < result.length ; i++) {
       let post = result[i];
       allContent.push(post)
-
+      lastAuthor = post.author;
+      lastPermlink = post.permlink;
       var urlRegex = /(https?:\/\/[^\s]+)/g;
       post.body = post.body.replace(urlRegex, (url) => {
         let last = url.slice(-3)
@@ -328,9 +331,9 @@ if ($('main').hasClass('feed') ) {
     let feedType = $('main.feed').data('feed-type')
 
     if(feedType === 'trending'){
-      getTrending({'limit': 20 })
+      getTrending({'limit': 20, 'tag': "steemitlol" }, true)
     } else {
-      getLatest({'limit': 20 })
+      getLatest({'limit': 20, 'tag': "steemitlol"  }, true)
     }
 }
 
@@ -399,3 +402,17 @@ $('main').on('click', '.send-comment', (e) => {
           $(`<p>${response.msg}</p>`).insertAfter($comment)
       })
 })
+
+window.addEventListener("scroll", function() {
+  if(document.body.scrollHeight - window.scrollY < 1000) {
+    if ($('main').hasClass('feed') ) {
+      let feedType = $('main.feed').data('feed-type')
+  
+      if(feedType === 'trending'){
+        getMoreContent("trending", "steemitlol")
+      } else {
+        getMoreContent("latest", "steemitlol");
+      }
+  }
+  }
+});
