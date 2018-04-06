@@ -1,12 +1,12 @@
 # Steemit.LOL
 You can use Steemit.LOL to create original memes and post them to the Steem Blockchain.  
-Our in-house moderator team will determine which memes get published and which memes get hidden. (coming soon)
 Bring your dankest original memes and get published today!
 
 ## How to Contribute
 
-Create a post on www.utopian.io containing either a New Development or Bug Hunting Contribution.  
-See other contribution rules here www.utopian.io/rules
+Make a contribution, either a New Development or a Bug Report
+
+Create a post on www.utopian.io containing detailed information on your New Development or Bug Hunting Contribution and follow the rules below.  
 
 ###  Development Rules
 **Develop on Steemit.LOL** Acceptable submissions in the development category include (1)Bug Fixes; (2)New Features.
@@ -29,7 +29,7 @@ See other contribution rules here www.utopian.io/rules
    * Bug Reports will be published as issues on GitHub.
    * Submissions include screenshots, video recordings or animated GIFs if they help to describe / understand the bug reported.
 
-##### Be sure to include the github repository AND the related information necessary in your Utopian submission<br>to be credited for your contribution.
+##### Be sure to include the github repository AND the related information necessary in your Utopian submission<br>for your greatest chance to be credited for your contribution.
 
 ## Steemit.LOL Roadmap
    * SteemConnect Portal <sup>(Finished)</sup>
