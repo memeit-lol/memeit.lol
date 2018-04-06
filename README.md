@@ -5,35 +5,35 @@ Bring your dankest original memes and get published today!
 ## How to Contribute
 
 Create a post on www.utopian.io containing either a New Development or Bug Hunting Contribution.  
-There are other methods to contribute but for now we'd like to focus on development. See other contribution rules here www.utopian.io/rules
+There are other methods to contribute but for now, we'd like to focus on development.  
+See other contribution rules here www.utopian.io/rules
 
 ###  Development Rules
 Acceptable submissions in the development category include (1)Bug Fixes; (2)New Features.
 
-   * Contributions must have a comprehensible commit history. Projects or updates submitted in a single commit will not be accepted.
-   * Outdated or low quality code will lead to rejection.
+   * Contributions must have a comprehensible commit history.
    * Generated code or other results of automated processes will not be accepted.
    * Submitted projects must have unique value. Redundant projects will not be accepted.
    * Trivial code snippets, example code or simple templates will not be accepted.
-   * Bug Fixes and New Features must be submitted via Pull Requests. The Pull Request must have been merged within the past 14 days.
-   * Updates on Own Projects can be committed directly, without a Pull Request. Commits must not be older than 14 days.
-   * Bug Fixes for contributor�s Own Projects will not be accepted, unless the Bugs were caused by third party dependencies.
-   * The repository must contain a readme file with usage and install instructions, as well as an appropriate open source license.
+   * Bug Fixes / New Features must be submitted via Pull Requests. (Recent within 14 days)
+   * Updates on Own Projects can be committed directly, without a Pull Request. (Recent within 14 days)
 
 ### Bug Hunting Rules
-Acceptable contributions in this category must include Bug Reports for Steemit.lol.
+**Found a bug?** Create a post that follows the criteria below and make a detailed post about it on Utopian.io
 
    * The repository on GitHub must accept issues.
-   * Bug Reports for projects in pre-alpha stage will not be accepted.
-   * Cosmetic issues that do not affect the functionality of the software will not be accepted.
+   * Cosmetic issues that do not affect the functionality of the software, while appreciated, cannot be accepted.
    * Submissions must include sufficient detail to reproduce the bug.
-   * Submissions must Include information about the debugging technical environment such as Device, Operating System, Browser and Application versions used.
+   * Submissions must include information about device used for debug, Operating System, Browser and Application versions used.
    * Submissions must refer to bugs on the latest released version of the application (not older versions).
    * Submission title must briefly describe the occuring issue and include searchable keywords.
-   * Bug Reports previously submitted as issues on GitHub (either by the contribution author or another party), will not be accepted. Approved Bug Reports will automatically be published on GitHub.
-   * Submissions should include screenshots, video recordings or animated GIFs if they can help to describe and understand the bug reported.
+   * Bug Reports previously submitted as issues on GitHub, will not be accepted.
+   * Bug Reports will be published as issues on GitHub.
+   * Submissions include screenshots, video recordings or animated GIFs if they help to describe / understand the bug reported.
 
-Be sure to include the github repository AND the related information necessary to be credited for your contribution.
+##### Be sure to include the github repository AND the related information necessary in your Utopian submission to be credited for your contribution.
+
+   * Outdated or low quality code will lead to rejection.
 
 ## Steemit.lol Edits
 - Authenticate with SteemConnect/Logout
