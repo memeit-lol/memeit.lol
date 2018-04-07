@@ -45,6 +45,7 @@ Create a post on www.utopian.io containing detailed information on your New Deve
 ## Setup for Testing
 - install node.js & NPM - [https://nodejs.org/en/](https://nodejs.org/en/)
 - clone repo
+- rename config.example.js to config.js
 - npm install // to download dependencies
 - npm start // run the project on default port 3000
 - navigate to localhost:3000 in your browser
