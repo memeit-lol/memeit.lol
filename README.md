@@ -1,5 +1,5 @@
 # Steemit.LOL
-You can use Steemit.LOL to create original memes and post them to the Steem Blockchain.  
+Steemit.LOL is an app made to easily onboard users to Steemit.com using a friendly user view and fun, profitable content. Our generator is easy to use to create original memes and post them to the Steem Blockchain.  
 Bring your dankest original memes and get published today!
 
 ## How to Contribute
@@ -32,6 +32,8 @@ Create a post on www.utopian.io containing detailed information on your New Deve
    * Submissions include screenshots, video recordings or animated GIFs if they help to describe / understand the bug reported.
 
 ##### Be sure to include the github repository AND the related information necessary in your Utopian submission<br>for your greatest chance to be credited for your contribution.
+
+### Well thought-out Suggestion posts are also accepted, but please include what would be necessary to making your suggestion a reality, and your ability/interest in helping to make it happen.
 
 ## Steemit.LOL V1 Roadmap
    * SteemConnect Portal <sup>(Finished)</sup>
