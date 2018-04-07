@@ -3,7 +3,6 @@ var text = document.getElementById("text")
 var submit = document.getElementById('submitBTN')
 window.url = 'https://steemit.lol/photos/memes/thumbnail/1_Okay_Guy.jpg'
 var form = document.getElementById('form')
-var nodes = []
 
 function change (url) {
   window.url = url

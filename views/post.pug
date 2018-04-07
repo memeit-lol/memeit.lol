@@ -13,10 +13,6 @@ block content
         div(class="card card-body" style="display: flex; flex-wrap: wrap; flex-direction: row; justify-content: space-evenly;")
           each image in images
             img(src=`https://steemit.lol/photos/memes/thumbnail/${image}` width="50" height="50" onclick=`window.change('https://steemit.lol/photos/memes/thumbnail/${image}');`)
-      label Top
-      input(type="text" id="top")
-      label Bottom
-      input(type="text" id="bottom")
       label Meme
       canvas(id="canvas")
       label Change Text
