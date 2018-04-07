@@ -6,7 +6,12 @@ let router = express.Router()
 let fs = require('fs')
 
 router.get('/', util.isAuthenticated, (req, res, next) => {
-  var images = fs.readdirSync('./memes')
+  var images
+  try {
+    images = fs.readdirSync('../memes')
+  } catch (err) {
+    images = []
+  }
   res.render('post', {
     name: req.session.steemconnect.name,
     images
@@ -14,7 +19,12 @@ router.get('/', util.isAuthenticated, (req, res, next) => {
 })
 
 router.post('/create-post', util.isAuthenticated, (req, res) => {
-  var images = fs.readdirSync('./memes')
+  var images
+  try {
+    images = fs.readdirSync('../memes')
+  } catch (err) {
+    images = []
+  }
   let author = req.session.steemconnect.name
   let permlink = util.urlString()
   var tags = req.body.tags.split(',').map(item => item.trim())
