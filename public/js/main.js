@@ -7,8 +7,17 @@ let converter = new showdown.Converter({ tables: true })
 function getTrending(query, initial){
   steem.api.getDiscussionsByTrending(query, (err, result) => {
     if (err === null) {
-      displayContent(result,initial)
-      getaccounts(result.map(post => post.author))
+      var filteredResults = [];
+      for (i=0;i < result.length; i++)
+      {
+        let app = JSON.parse(result[i].json_metadata).app
+        if (app.includes("steemit.lol"))
+        {
+          filteredResults.push(result[i]);
+        }
+      }
+      displayContent(filteredResults,initial);
+      getaccounts(filteredResults.map(post => post.author));
     } else {
       console.log(err);
     }
@@ -19,8 +28,17 @@ function getLatest(query, initial){
 
   steem.api.getDiscussionsByCreated(query, (err, result) => {
     if (err === null) {
-      displayContent(result, initial)
-      getaccounts(result.map(post => post.author))
+      var filteredResults = [];
+      for (i=0;i < result.length; i++)
+      {
+        let app = JSON.parse(result[i].json_metadata).app
+        if (app.includes("steemit.lol"))
+        {
+          filteredResults.push(result[i]);
+        }
+      }
+      displayContent(filteredResults, initial);
+      getaccounts(filteredResults.map(post => post.author));
     } else {
       console.log(err);
     }
@@ -49,7 +67,16 @@ function getBlog(username){
     limit: 10
   }
   steem.api.getDiscussionsByBlog(query, (err, result) => {
-      displayContent(result)
+    var filteredResults = [];
+    for (i=0;i < result.length; i++)
+    {
+      let app = JSON.parse(result[i].json_metadata).app
+      if (app.includes("steemit.lol"))
+      {
+        filteredResults.push(result[i]);
+      }
+    }
+    displayContent(filteredResults)
   })
 }
 
@@ -60,7 +87,20 @@ function getUserFeed(username){
   }
   steem.api.getDiscussionsByFeed(query, (err, result) => {
     console.log(result)
-    displayContent(result)
+
+    var filteredResults = new Array;
+    for (i=0;i < result.length; i++)
+    {
+
+      let app = JSON.parse(result[i].json_metadata).app
+      if (app.includes("steemit.lol"))
+      {
+        filteredResults.push(result[i]);
+      }
+      
+    }
+    console.log(filteredResults);
+    displayContent(filteredResults);
   });
 }
 
@@ -270,7 +310,7 @@ getAccountInfo = (username) => {
 
     let totalVestingShares, totalVestingFundSteem;
     let userInfo;
-
+    
     steem.api.getDynamicGlobalProperties((err, result) => {
       totalVestingShares = result.total_vesting_shares;
       totalVestingFundSteem = result.total_vesting_fund_steem;
