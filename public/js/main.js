@@ -13,8 +13,8 @@ function getTrending(query, initial){
         if (JSON.parse(result[i].json_metadata).app == "steemit.lol/0.0.1")
         {
           filteredResults.push(result[i]);
-       }
-    }
+        }
+      }
       displayContent(filteredResults,initial);
       getaccounts(filteredResults.map(post => post.author));
     } else {
@@ -31,11 +31,10 @@ function getLatest(query, initial){
       for (i=0;i < result.length; i++)
       {
         if (JSON.parse(result[i].json_metadata).app == "steemit.lol/0.0.1")
-       {
+        {
           filteredResults.push(result[i]);
-       }
+        }
       }
-    
       displayContent(filteredResults, initial);
       getaccounts(filteredResults.map(post => post.author));
     } else {
