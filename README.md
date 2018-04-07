@@ -4,7 +4,9 @@ Bring your dankest original memes and get published today!
 
 ## How to Contribute
 
-Make a contribution, either a New Development or a Bug Report
+Make a contribution, either a New Development or a Bug Report.
+
+If programming you must abide by these [rules](https://standardjs.com/rules.html).
 
 Create a post on www.utopian.io containing detailed information on your New Development or Bug Hunting Contribution and follow the rules below.  
 
