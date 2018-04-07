@@ -10,7 +10,8 @@ function getTrending(query, initial){
       var filteredResults = [];
       for (i=0;i < result.length; i++)
       {
-        if (JSON.parse(result[i].json_metadata).app == "steemit.lol/0.0.1")
+        let app = JSON.parse(result[i].json_metadata).app
+        if (app.includes("steemit.lol"))
         {
           filteredResults.push(result[i]);
         }
@@ -30,7 +31,8 @@ function getLatest(query, initial){
       var filteredResults = [];
       for (i=0;i < result.length; i++)
       {
-        if (JSON.parse(result[i].json_metadata).app == "steemit.lol/0.0.1")
+        let app = JSON.parse(result[i].json_metadata).app
+        if (app.includes("steemit.lol"))
         {
           filteredResults.push(result[i]);
         }
@@ -68,7 +70,8 @@ function getBlog(username){
     var filteredResults = [];
     for (i=0;i < result.length; i++)
     {
-      if (JSON.parse(result[i].json_metadata).app == "steemit.lol/0.0.1")
+      let app = JSON.parse(result[i].json_metadata).app
+      if (app.includes("steemit.lol"))
       {
         filteredResults.push(result[i]);
       }
@@ -89,7 +92,8 @@ function getUserFeed(username){
     for (i=0;i < result.length; i++)
     {
 
-      if (JSON.parse(result[i].json_metadata).app == "steemit.lol/0.0.1")
+      let app = JSON.parse(result[i].json_metadata).app
+      if (app.includes("steemit.lol"))
       {
         filteredResults.push(result[i]);
       }
