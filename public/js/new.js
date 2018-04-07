@@ -34,7 +34,9 @@ function drawMeme (src) {
   }
   image.src = src;
 }
-
+form.onsubmit = function(e) {
+  e.preventDefault()
+}
 submit.addEventListener('click', function (e) {
   e.preventDefault()
   $.post('https://steemit.lol/photos/images/', {image: c.toDataURL()}, function (data) {

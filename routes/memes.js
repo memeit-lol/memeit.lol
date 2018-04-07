@@ -27,7 +27,7 @@ router.get('/:name', (req, res, next) => {
 
 router.get('/thumbnail/:name', (req, res, next) => {
   res.setHeader('Content-Type', 'image/png')
-  jimp.read('./memes/' + req.params.name, (err, re) => {
+  jimp.read('../memes/' + req.params.name, (err, re) => {
     if (!err) {
       let scale = re.bitmap.width / re.bitmap.height
       re.resize(50 * scale, 50)
