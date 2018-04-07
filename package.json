@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "prestart": "npm install",
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "standard": "standard",
+    "precommit": "npm run standard"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
@@ -23,5 +25,14 @@
     "steem": "^0.7.1",
     "steemconnect": "0.0.35",
     "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "standard": "^11.0.1"
+  },
+  "standard": {
+    "ignore": [
+      "public/js/main.js",
+      "public/js/meme.js"
+    ]
   }
 }
