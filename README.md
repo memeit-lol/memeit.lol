@@ -33,11 +33,10 @@ Create a post on www.utopian.io containing detailed information on your New Deve
 
 ##### Be sure to include the github repository AND the related information necessary in your Utopian submission<br>for your greatest chance to be credited for your contribution.
 
-## Steemit.LOL Roadmap
+## Steemit.LOL V1 Roadmap
    * SteemConnect Portal <sup>(Finished)</sup>
    * User Dashboard <sup>(Finished)</sup>
-   * Feed Page (Trending / New) <sup>(In Progress)</sup>
-     * Filter Feed Page to Only Include Posts from Steemit.LOL
+   * Feed Page (Trending / New) <sup>(Finished)</sup>
    * Memegenerator Post Creator <sup>(Finished)</sup>
    * Add Delegator Reward System <sup>(Finished)</sup>
    * Change Meme Voting to Slider 10% to 100%
