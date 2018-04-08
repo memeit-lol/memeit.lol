@@ -10,7 +10,7 @@ function getTrending (query, initial) {
       var filteredResults = []
       for (i = 0; i < result.length; i++) {
         let app = JSON.parse(result[i].json_metadata).app
-        if (app.includes('steemit.lol')) {
+        if (app.includes('steemit.lol') || app.includes('memeit.lol')) {
           filteredResults.push(result[i])
         }
       }
@@ -28,7 +28,7 @@ function getLatest (query, initial) {
       var filteredResults = []
       for (i = 0; i < result.length; i++) {
         let app = JSON.parse(result[i].json_metadata).app
-        if (app.includes('steemit.lol')) {
+        if (app.includes('steemit.lol') || app.includes('memeit.lol')) {
           filteredResults.push(result[i])
         }
       }
@@ -65,7 +65,7 @@ function getBlog (username) {
     var filteredResults = []
     for (i = 0; i < result.length; i++) {
       let app = JSON.parse(result[i].json_metadata).app
-      if (app.includes('steemit.lol')) {
+      if (app.includes('steemit.lol') || app.includes('memeit.lol')) {
         filteredResults.push(result[i])
       }
     }
@@ -84,7 +84,7 @@ function getUserFeed (username) {
     var filteredResults = new Array()
     for (i = 0; i < result.length; i++) {
       let app = JSON.parse(result[i].json_metadata).app
-      if (app.includes('steemit.lol')) {
+      if (app.includes('steemit.lol') || app.includes('memeit.lol')) {
         filteredResults.push(result[i])
       }
     }
@@ -429,9 +429,9 @@ window.addEventListener('scroll', function () {
       let feedType = $('main.feed').data('feed-type')
 
       if (feedType === 'trending') {
-        getMoreContent('trending', 'steemitlol')
+        getMoreContent('trending', 'memeitlol')
       } else {
-        getMoreContent('latest', 'steemitlol')
+        getMoreContent('latest', 'memeitlol')
       }
     }
   }
