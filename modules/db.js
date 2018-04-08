@@ -31,7 +31,7 @@ function getModNames () {
   modsList = modsList.sort(function (a, b) {
     return b.num - a.num
   })
-  return modsList.slice(0, 2)
+  return modsList.slice(0, 3)
 }
 
 module.exports = {
