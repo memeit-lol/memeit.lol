@@ -1,5 +1,5 @@
 {
-  "name": "steemit.lol",
+  "name": "memit.lol",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -32,7 +32,8 @@
   "standard": {
     "ignore": [
       "public/js/main.js",
-      "public/js/meme.js"
+      "public/js/meme.js",
+      "public/js/new.js"
     ]
   }
 }

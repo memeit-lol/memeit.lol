@@ -29,16 +29,16 @@ router.post('/create-post', util.isAuthenticated, (req, res) => {
   let permlink = util.urlString()
   var tags = req.body.tags.split(',').map(item => item.trim())
   let primaryTag = 'memeitlol'
-  let otherTags = tags.slice(1, 4)
+  let otherTags = tags.slice(0, 4)
   let title = req.body.title
   let done = false
-  delegator.getWeights('steemit.lol', function (data) {
+  delegator.getWeights('memeit.lol', function (data) {
     if (!done) {
       let ben = []
       for (let key in data) {
         ben.push({'account': key, 'weight': data[key]})
       }
-      steem.broadcast([['comment', {'parent_author': '', 'parent_permlink': primaryTag, 'author': author, 'permlink': permlink, 'title': title, 'body': `<img src="https://steemit.lol/photos/images/${req.body.image}" />`, 'json_metadata': JSON.stringify({app: 'memeit.lol/0.0.1', tags: [primaryTag, ...otherTags], image: ['https://steemit.lol/photos/images/' + req.body.image]})}], ['comment_options', {'author': author, 'permlink': permlink, 'max_accepted_payout': '1000000.000 SBD', 'percent_steem_dollars': 10000, 'allow_votes': true, 'allow_curation_rewards': true, 'extensions': [[0, {'beneficiaries': ben}]]}]], function (err, response) {
+      steem.broadcast([['comment', {'parent_author': '', 'parent_permlink': primaryTag, 'author': author, 'permlink': permlink, 'title': title, 'body': `<img src="https://memeit.lol/photos/images/${req.body.image}" />`, 'json_metadata': JSON.stringify({app: 'memeit.lol/0.0.1', tags: [primaryTag, ...otherTags], image: ['https://memeit.lol/photos/images/' + req.body.image]})}], ['comment_options', {'author': author, 'permlink': permlink, 'max_accepted_payout': '1000000.000 SBD', 'percent_steem_dollars': 10000, 'allow_votes': true, 'allow_curation_rewards': true, 'extensions': [[0, {'beneficiaries': ben}]]}]], function (err, response) {
         if (err) {
           res.render('post', {
             name: req.session.steemconnect.name,

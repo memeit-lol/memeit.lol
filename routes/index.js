@@ -23,7 +23,7 @@ router.get('/faq', (req, res, next) => {
 })
 
 router.get('/supporters', (req, res, next) => {
-  delegatorsScript.loadDelegations('steemit.lol', function (delegators) {
+  delegatorsScript.loadDelegations('memeit.lol', function (delegators) {
     res.render('supporters', {
       delegators
     })
