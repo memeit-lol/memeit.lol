@@ -17,7 +17,7 @@ let post = require('./routes/post')
 let memes = require('./routes/memes')
 let images = require('./routes/images')
 
-let config = require('./config')
+let config = require('./package.json').config
 
 let app = express()
 

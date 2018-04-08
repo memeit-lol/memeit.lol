@@ -3,6 +3,13 @@ let router = express.Router()
 let fs = require('fs')
 let jimp = require('jimp')
 let uuid = require('uuid/v4')
+let pixel = require('pixelhosting')
+let config = require('../package.json').config
+
+pixel.init({
+  api_key: config.api_key,
+  api_key_id: config.api_key_id
+})
 
 router.get('/:name', (req, res, next) => {
   res.setHeader('Content-Type', 'image/png')
@@ -23,7 +30,13 @@ router.post('/', (req, res) => {
   let data = image.replace(/^data:image\/\w+;base64,/, '')
   let name = uuid() + '.png'
   fs.writeFileSync('./images/' + name, data, {encoding: 'base64'})
-  res.json({filename: name})
+  if (config.testing) {
+    res.json({filename: name})
+  } else {
+    pixel.upload(image).then((result) => {
+      res.json({filename: result})
+    })
+  }
 })
 
 module.exports = router

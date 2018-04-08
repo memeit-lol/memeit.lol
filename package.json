@@ -1,5 +1,5 @@
 {
-  "name": "memit.lol",
+  "name": "memeit.lol",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -19,6 +19,7 @@
     "jimp": "^0.2.28",
     "morgan": "~1.9.0",
     "node-json-db": "^0.7.5",
+    "pixelhosting": "^1.0.5",
     "pug": "2.0.0-beta11",
     "sc2-sdk": "^1.0.2",
     "serve-favicon": "~2.4.5",
@@ -35,5 +36,18 @@
       "public/js/meme.js",
       "public/js/new.js"
     ]
+  },
+  "config": {
+    "testing": false,
+    "port": 3000,
+    "auth": {
+      "client_id": "memeit.lol.app",
+      "redirect_uri": "https://memeit.lol/auth/"
+    },
+    "session": {
+      "secret": "sessionloldisk"
+    },
+    "api_key_id": "",
+    "api_key": ""
   }
 }

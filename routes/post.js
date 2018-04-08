@@ -4,6 +4,7 @@ let steem = require('../modules/steemconnect')
 let delegator = require('../modules/delegators')
 let router = express.Router()
 let fs = require('fs')
+let config = require('../package.json').config
 
 router.get('/', util.isAuthenticated, (req, res, next) => {
   var images
@@ -27,8 +28,8 @@ router.post('/create-post', util.isAuthenticated, (req, res) => {
   }
   let author = req.session.steemconnect.name
   let permlink = util.urlString()
-  var tags = req.body.tags.split(',').map(item => item.trim())
-  let primaryTag = 'memeitlol'
+  var tags = req.body.tags.split(/[\s,]+/).map(item => item.trim())
+  let primaryTag = config.testing === false ? 'memeitlol' : 'memeitloltest'
   let otherTags = tags.slice(0, 4)
   let title = req.body.title
   let done = false
@@ -38,22 +39,24 @@ router.post('/create-post', util.isAuthenticated, (req, res) => {
       for (let key in data) {
         ben.push({'account': key, 'weight': data[key]})
       }
-      steem.broadcast([['comment', {'parent_author': '', 'parent_permlink': primaryTag, 'author': author, 'permlink': permlink, 'title': title, 'body': `<img src="https://memeit.lol/photos/images/${req.body.image}" />`, 'json_metadata': JSON.stringify({app: 'memeit.lol/0.0.1', tags: [primaryTag, ...otherTags], image: ['https://memeit.lol/photos/images/' + req.body.image]})}], ['comment_options', {'author': author, 'permlink': permlink, 'max_accepted_payout': '1000000.000 SBD', 'percent_steem_dollars': 10000, 'allow_votes': true, 'allow_curation_rewards': true, 'extensions': [[0, {'beneficiaries': ben}]]}]], function (err, response) {
-        if (err) {
-          res.render('post', {
-            name: req.session.steemconnect.name,
-            msg: 'Error',
-            images
-          })
-          console.log(err)
-        } else {
-          res.render('post', {
-            name: req.session.steemconnect.name,
-            msg: 'Posted To Steem Network',
-            images
-          })
-        }
-      })
+      if (config.testing !== true) {
+        steem.broadcast([['comment', {'parent_author': '', 'parent_permlink': primaryTag, 'author': author, 'permlink': permlink, 'title': title, 'body': `<img src="${req.body.image}" />`, 'json_metadata': JSON.stringify({app: config.testing === false ? 'memeit.lol/0.0.1' : 'memeit.test/0.0.1', tags: [primaryTag, ...otherTags], image: [req.body.image]})}], ['comment_options', {'author': author, 'permlink': permlink, 'max_accepted_payout': '1000000.000 SBD', 'percent_steem_dollars': 10000, 'allow_votes': true, 'allow_curation_rewards': true, 'extensions': [[0, {'beneficiaries': ben}]]}]], function (err, response) {
+          if (err) {
+            res.render('post', {
+              name: req.session.steemconnect.name,
+              msg: 'Error',
+              images
+            })
+            console.log(err)
+          } else {
+            res.render('post', {
+              name: req.session.steemconnect.name,
+              msg: 'Posted To Steem Network',
+              images
+            })
+          }
+        })
+      }
       done = true
     }
   })
