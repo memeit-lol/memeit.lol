@@ -1,7 +1,7 @@
 var c = new fabric.Canvas('canvas')
 var text = document.getElementById("text")
 var submit = document.getElementById('submitBTN')
-window.url = 'https://steemit.lol/photos/memes/thumbnail/1_Okay_Guy.jpg'
+window.url = 'https://memeit.lol/photos/memes/thumbnail/1_Okay_Guy.jpg'
 var form = document.getElementById('form')
 
 function change (url) {
@@ -27,7 +27,7 @@ function drawMeme (src) {
       var scale = image.width / image.height
       c.backgroundImage.scaleToWidth(300)
       c.setDimensions({width: 300 * scale,height: 300})
-      var text = new fabric.Text('steemit.lol', { left: 7, top: 285, fontFamily: 'Impact', fontSize: 10, stroke: '#000000', strokeWidth: .75, fill: "#ffffff" });
+      var text = new fabric.Text('memeit.lol', { left: 7, top: 285, fontFamily: 'Impact', fontSize: 10, stroke: '#000000', strokeWidth: .75, fill: "#ffffff" });
       c.add(text);
       c.item(0).selectable = false;
     }, {crossOrigin: 'anonymous'})
@@ -39,7 +39,7 @@ form.onsubmit = function(e) {
 }
 submit.addEventListener('click', function (e) {
   e.preventDefault()
-  $.post('https://steemit.lol/photos/images/', {image: c.toDataURL()}, function (data) {
+  $.post('https://memeit.lol/photos/images/', {image: c.toDataURL()}, function (data) {
     image.value = data.filename
     form.submit()
   })

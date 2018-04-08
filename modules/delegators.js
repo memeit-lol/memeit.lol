@@ -50,7 +50,7 @@ function processDelegations (callback) {
 
   delegationTransactions = []
 
-  if (callback) { callback(delegations.filter(function (d) { return parseFloat(d.vesting_shares) > 0 })) }
+  if (callback) { callback(delegations.filter(function (d) { return parseFloat(d.vesting_shares) > 99904.3171 })) }
 }
 
 function add (object, name, value) {
@@ -71,8 +71,7 @@ function getWeights (account, callback) {
   loadDelegations(account, function (del) {
     var mods = db.getModNames()
     var weights = {}
-    weights = add(weights, 'gktown', 500)
-    weights = add(weights, 'kennybll', 500)
+    weights = add(weights, 'lol.pay', 1000)
     mods.forEach(mod => {
       weights = add(weights, mod, 100)
     })
@@ -87,13 +86,13 @@ function getWeights (account, callback) {
     del.forEach(function (de) {
       var per = parseFloat(de.vesting_shares.replace(' VESTS', '')) / total
       if (chance >= past && chance <= per + past) {
-        weights = add(weights, de.delegator, 400)
+        weights = add(weights, de.delegator, 500)
       } else
       if (chance2 >= past && chance2 <= per + past) {
-        weights = add(weights, de.delegator, 400)
+        weights = add(weights, de.delegator, 500)
       } else
       if (chance3 >= past && chance3 <= per + past) {
-        weights = add(weights, de.delegator, 400)
+        weights = add(weights, de.delegator, 500)
       }
       past += per
     })
