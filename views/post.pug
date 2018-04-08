@@ -13,18 +13,15 @@ block content
         div(class="card card-body" style="display: flex; flex-wrap: wrap; flex-direction: row; justify-content: space-evenly;")
           each image in images
             img(src=`https://steemit.lol/photos/memes/thumbnail/${image}` width="50" height="50" onclick=`window.change('https://steemit.lol/photos/memes/thumbnail/${image}');`)
-      label Top
-      input(type="text" id="top")
-      label Bottom
-      input(type="text" id="bottom")
       label Meme
-      canvas(id="canvas" style="display: none;")
-      img(id="img1" style="display: none;")
-      img(id="img2")
+      canvas(id="canvas")
+      label Change Text
+      input(id="text" type="text")
+      button(id="add" onclick="addText();") Add More Text
       label Tags
       input(type="text" name="tags")
       input(type="hidden" name="image" id="image")
       button(id="submitBTN") Submit
       p Posting as #{name}
       p #{msg}
-  script(src="/js/meme.js")
+  script(src="/js/new.js")
