@@ -352,9 +352,9 @@ if ($('main').hasClass('feed')) {
   let feedType = $('main.feed').data('feed-type')
 
   if (feedType === 'trending') {
-    getTrending({'limit': 20, 'tag': 'steemitlol' }, true)
+    getTrending({'limit': 20, 'tag': 'memeitlol' }, true)
   } else {
-    getLatest({'limit': 20, 'tag': 'steemitlol' }, true)
+    getLatest({'limit': 20, 'tag': 'memeitlol' }, true)
   }
 }
 
