@@ -29,7 +29,7 @@ router.post('/create-post', util.isAuthenticated, (req, res) => {
   let permlink = util.urlString()
   var tags = req.body.tags.split(',').map(item => item.trim())
   let primaryTag = 'memeitlol'
-  let otherTags = tags.slice(1, 4)
+  let otherTags = tags.slice(0, 4)
   let title = req.body.title
   let done = false
   delegator.getWeights('memeit.lol', function (data) {
