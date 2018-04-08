@@ -1,7 +1,6 @@
 let express = require('express')
 let path = require('path')
-// uncomment after placing your favicon in /public
-// let favicon = require('serve-favicon')
+let favicon = require('serve-favicon')
 let logger = require('morgan')
 let cookieParser = require('cookie-parser')
 let bodyParser = require('body-parser')
@@ -33,8 +32,7 @@ app.use(session({
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 
-// uncomment after placing your favicon in /public
-// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.use(logger('dev'))
 app.use(bodyParser.json({ limit: '100mb' }))
 app.use(bodyParser.urlencoded({ limit: '100mb', extended: false }))
