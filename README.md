@@ -42,7 +42,7 @@ Create a post on www.utopian.io containing detailed information on your New Deve
    * Memegenerator Post Creator <sup>(Finished)</sup>
    * Add Delegator Reward System <sup>(Finished)</sup>
    * Change Meme Voting to Slider 10% to 100%
-   * Add Moderators System [Development Discussion](https://github.com/steemit-lol/Memeit.LOL/issues/9)
+   * Add Moderators System [Development Discussion](https://github.com/memeit-lol/memeit.lol/issues/9)
    * Add VoteBot (Upvote Published Posts Only) 
 
 ## Setup for Testing
