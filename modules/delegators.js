@@ -1,5 +1,5 @@
 const steem = require('steem')
-let db = require('../modules/db')
+let db = require('../db')
 
 var delegationTransactions = []
 
@@ -69,34 +69,35 @@ function add (object, name, value) {
 
 function getWeights (account, callback) {
   loadDelegations(account, function (del) {
-    var mods = db.getModNames()
-    var weights = {}
-    weights = add(weights, 'lol.pay', 1000)
-    mods.forEach(mod => {
-      weights = add(weights, mod, 100)
+    db.client.query('SELECT STEEM FROM mods ORDER BY VOTES ASC', function (err, res) {
+      if (err) console.log(err)
+      var mods = res.rows
+      var weights = {}
+      weights = add(weights, 'lol.pay', 1000)
+      mods.forEach(mod => {
+        weights = add(weights, mod, 100)
+      })
+      var total = 0
+      var past = 0
+      del.forEach(function (de) {
+        total += parseFloat(de.vesting_shares.replace(' VESTS', ''))
+      })
+      var chance = Math.random()
+      var chance2 = Math.random()
+      var chance3 = Math.random()
+      del.forEach(function (de) {
+        var per = parseFloat(de.vesting_shares.replace(' VESTS', '')) / total
+        if (chance >= past && chance <= per + past) {
+          weights = add(weights, de.delegator, 500)
+        } else if (chance2 >= past && chance2 <= per + past) {
+          weights = add(weights, de.delegator, 500)
+        } else if (chance3 >= past && chance3 <= per + past) {
+          weights = add(weights, de.delegator, 500)
+        }
+        past += per
+      })
+      callback(weights)
     })
-    var total = 0
-    var past = 0
-    del.forEach(function (de) {
-      total += parseFloat(de.vesting_shares.replace(' VESTS', ''))
-    })
-    var chance = Math.random()
-    var chance2 = Math.random()
-    var chance3 = Math.random()
-    del.forEach(function (de) {
-      var per = parseFloat(de.vesting_shares.replace(' VESTS', '')) / total
-      if (chance >= past && chance <= per + past) {
-        weights = add(weights, de.delegator, 500)
-      } else
-      if (chance2 >= past && chance2 <= per + past) {
-        weights = add(weights, de.delegator, 500)
-      } else
-      if (chance3 >= past && chance3 <= per + past) {
-        weights = add(weights, de.delegator, 500)
-      }
-      past += per
-    })
-    callback(weights)
   })
 }
 

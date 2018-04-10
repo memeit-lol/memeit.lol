@@ -6,7 +6,8 @@ let config = {
   },
   session: {
     secret: 'sessionlolidsk'
-  }
+  },
+  postgres: ''
 }
 
 module.exports = config

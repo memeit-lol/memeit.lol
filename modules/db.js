@@ -1,39 +1,9 @@
-var JsonDB = require('node-json-db')
-var db = new JsonDB('moderators', true, false)
+const { Client } = require('pg')
+const config = require('../config')
+const client = new Client({
+  connectionString: config.postgres
+})
 
-var mods = db.getData('/moderators')
+client.connect()
 
-function addModPoint (mod) {
-  mods[mod] += 1
-  db.push('/moderators', mods)
-}
-
-function addMod (mod) {
-  mods[mod] = 0
-  db.push('/moderators', mods)
-}
-
-function getMods () {
-  let modsList = []
-  for (let mod in mods) {
-    modsList.push({mod, num: mods[mod]})
-  }
-  return modsList.sort(function (a, b) {
-    return b.num - a.num
-  })
-}
-
-function getModNames () {
-  let modsList = []
-  for (let mod in mods) {
-    modsList.push(mod)
-  }
-  modsList = modsList.sort(function (a, b) {
-    return b.num - a.num
-  })
-  return modsList.slice(0, 3)
-}
-
-module.exports = {
-  addModPoint, addMod, getMods, getModNames
-}
+module.exports = client

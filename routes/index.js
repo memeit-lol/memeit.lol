@@ -25,7 +25,7 @@ router.get('/faq', (req, res, next) => {
 router.get('/supporters', (req, res, next) => {
   delegatorsScript.loadDelegations('memeit.lol', function (delegators) {
     res.render('supporters', {
-      delegators
+      delegators: delegators.reverse()
     })
   })
 })
