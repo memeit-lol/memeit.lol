@@ -52,3 +52,5 @@ Create a post on www.utopian.io containing detailed information on your New Deve
 - npm install // to download dependencies
 - npm start // run the project on default port 3000
 - navigate to localhost:3000 in your browser
+
+## Join us on Discord https://discord.gg/QgWZfcJ
