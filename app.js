@@ -15,6 +15,7 @@ let feed = require('./routes/feed')
 let post = require('./routes/post')
 let memes = require('./routes/memes')
 let images = require('./routes/images')
+let mods = require('./routes/mods')
 
 let config = require('./config')
 
@@ -49,6 +50,7 @@ app.use('/post', post)
 app.use('/post/create-post', post)
 app.use('/photos/memes', memes)
 app.use('/photos/images', images)
+app.use('/mods', mods)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

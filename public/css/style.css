@@ -1,6 +1,12 @@
 * {
   box-sizing: border-box;
 }
+
+@font-face {
+  font-family: Impact;
+  src: url(/impact.ttf);
+}
+
 body {
   /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
 }

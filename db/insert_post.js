@@ -1,3 +1,3 @@
-module.exports = function (title, author, permlink) {
-  return `INSERT INTO posts(TITLE, AUTHOR, PERMLINK) VALUES('${title}', '${author}', '${permlink}');`
+module.exports = function (title, author, permlink, img) {
+  return `INSERT INTO posts(TITLE, AUTHOR, PERMLINK, VOTED, IMG) VALUES('${title}', '${author}', '${permlink}', false, '${img}');`
 }

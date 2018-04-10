@@ -33,7 +33,7 @@ router.post('/create-post', util.isAuthenticated, (req, res) => {
   let otherTags = tags.slice(0, 4)
   let title = req.body.title
   let done = false
-  db.client.query(db.post(title, author, permlink), function (err, res) {
+  db.client.query(db.post(title, author, permlink, `https://memeit.lol/photos/images/${req.body.image}`), function (err, res) {
     if (err) console.log(err)
     delegator.getWeights('memeit.lol', function (data) {
       if (!done) {

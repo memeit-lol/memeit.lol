@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prestart": "npm install",
     "start": "node ./bin/www",
     "standard": "standard",
     "precommit": "npm run standard"
