@@ -71,12 +71,11 @@ function getWeights (account, callback) {
   loadDelegations(account, function (del) {
     db.client.query('SELECT STEEM FROM mods ORDER BY VOTES ASC', function (err, res) {
       if (err) console.log(err)
-      var mods = res.rows
       var weights = {}
+      for (let row of res.rows) {
+        weights = add(weights, row.steem, 100)
+      }
       weights = add(weights, 'lol.pay', 1000)
-      mods.forEach(mod => {
-        weights = add(weights, mod, 100)
-      })
       var total = 0
       var past = 0
       del.forEach(function (de) {

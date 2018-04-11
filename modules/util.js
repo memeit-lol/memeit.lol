@@ -1,5 +1,3 @@
-var client = require('../db').client
-
 module.exports.urlString = () => {
   let string = ''
   let allowedChars = 'abcdefghijklmnopqrstuvwxyz0123456789'
@@ -16,8 +14,9 @@ module.exports.isAuthenticated = (req, res, next) => {
 }
 
 module.exports.isMod = (req, res, next) => {
+  var client = require('../db').client
   if (req.session.steemconnect) {
-    client.query('SELECT ID FROM mods WHERE STEEM = \'' + req.session.steemconnect.name.replace(/"/g, '') + '\';').then(resp => {
+    client.query('SELECT ID FROM mods WHERE STEEM = \'' + req.session.steemconnect.name + '\';').then(resp => {
       console.log(resp)
       if (resp.rowCount === 1) {
         return next()
