@@ -24,8 +24,9 @@ router.get('/faq', (req, res, next) => {
 
 router.get('/supporters', (req, res, next) => {
   delegatorsScript.loadDelegations('memeit.lol', function (delegators) {
+    console.log(delegators)
     res.render('supporters', {
-      delegators: delegators.sort(function (a, b) { return b.vesting_shares - a.vesting_shares })
+      delegators
     })
   })
 })

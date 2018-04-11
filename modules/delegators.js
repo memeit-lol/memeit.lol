@@ -50,7 +50,7 @@ function processDelegations (callback) {
 
   delegationTransactions = []
 
-  if (callback) { callback(delegations.filter(function (d) { return parseFloat(d.vesting_shares) > 99888.8554 })) }
+  if (callback) { callback(delegations.filter(function (d) { return parseFloat(d.vesting_shares) > 99888 }).sort(function (a, b) { return parseFloat(b.vesting_shares.replace(' VESTS', '')) - parseFloat(a.vesting_shares.replace(' VESTS', '')) })) }
 }
 
 function add (object, name, value) {
