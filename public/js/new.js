@@ -18,7 +18,7 @@ function addText() {
   c.add(text);
 }
 
-function drawMeme (src) {{
+function drawMeme (src) {
   var image = new Image();
   image.onload = function() {
 	  c.clear()
@@ -34,7 +34,6 @@ function drawMeme (src) {{
     }, {crossOrigin: 'anonymous'})
   }
   image.src = src;
-};
 }
 form.onsubmit = function(e) {
   e.preventDefault()
