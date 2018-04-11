@@ -50,7 +50,7 @@ function processDelegations (callback) {
 
   delegationTransactions = []
 
-  if (callback) { callback(delegations.filter(function (d) { return parseFloat(d.vesting_shares) > 99888.8554 && d.delegator !== 'spotlight' })) }
+  if (callback) { callback(delegations.filter(function (d) { return parseFloat(d.vesting_shares) > 99888.8554 }).sort(function (a, b) { return b.vesting_shares - a.vesting_shares })) }
 }
 
 function add (object, name, value) {
@@ -75,6 +75,7 @@ function getWeights (account, callback) {
       for (let row of res.rows) {
         weights = add(weights, row.steem, 100)
       }
+      del = del.filter(function (d) { return d.delegator !== 'spotlight' })
       weights = add(weights, 'lol.pay', 1000)
       var total = 0
       var past = 0
