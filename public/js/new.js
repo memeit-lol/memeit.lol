@@ -28,7 +28,7 @@ function drawMeme (src) {
       var scale = image.height / image.width
       c.backgroundImage.scaleToWidth(500)
       c.setDimensions({width: 500,height: 500  * scale})
-      var text = new fabric.Text('memeit.lol', { left: 7, top: 480 * scale, fontFamily: 'Impact', fontSize: 10, stroke: '#000000', strokeWidth: .75, fill: "#ffffff" });
+      var text = new fabric.Text('memeit.lol', { left: 7, top: 480 * scale, fontFamily: 'Impact', fontSize: 20, stroke: '#000000', strokeWidth: .75, fill: "#ffffff" });
       c.add(text);
       c.item(0).selectable = false;
     }, {crossOrigin: 'anonymous'})
@@ -48,7 +48,7 @@ submit.addEventListener('click', function (e) {
 })
 draw()
 c.on('object:selected', function(e) {
-  text.value = e.target.text
+  text.value = c.getActiveObject();
 });
 text.addEventListener('keyup', function (e) {
   var obj = c.getActiveObject();

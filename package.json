@@ -33,7 +33,8 @@
     "ignore": [
       "public/js/main.js",
       "public/js/meme.js",
-      "public/js/new.js"
+      "public/js/new.js",
+      "public/js/mod.js"
     ]
   }
 }

@@ -40,7 +40,6 @@ router.post('/create-post', util.isAuthenticated, (req, res) => {
       for (let key in data) {
         ben.push({'account': key, 'weight': data[key]})
       }
-      console.log([['comment', {'parent_author': '', 'parent_permlink': primaryTag, 'author': author, 'permlink': permlink, 'title': title, 'body': `<img src="${req.body.image}" />`, 'json_metadata': JSON.stringify({app: 'memeit.lol/0.0.1', tags: [primaryTag, ...otherTags], image: [req.body.image]})}], ['comment_options', {'author': author, 'permlink': permlink, 'max_accepted_payout': '1000000.000 SBD', 'percent_steem_dollars': 10000, 'allow_votes': true, 'allow_curation_rewards': true, 'extensions': [[0, {'beneficiaries': ben}]]}]])
       steem.broadcast([['comment', {'parent_author': '', 'parent_permlink': primaryTag, 'author': author, 'permlink': permlink, 'title': title, 'body': `<img src="${req.body.image}" />`, 'json_metadata': JSON.stringify({app: 'memeit.lol/0.0.1', tags: [primaryTag, ...otherTags], image: [req.body.image]})}], ['comment_options', {'author': author, 'permlink': permlink, 'max_accepted_payout': '1000000.000 SBD', 'percent_steem_dollars': 10000, 'allow_votes': true, 'allow_curation_rewards': true, 'extensions': [[0, {'beneficiaries': ben}]]}]], function (err, response) {
         if (err) {
           res.render('post', {

@@ -7,6 +7,30 @@
   src: url(/impact.ttf);
 }
 
+.modPost {
+  margin-bottom: 30px;
+  padding: 30px;
+  background-color: #F2F2F2;
+}
+
+.modControls {
+  display: flex;
+}
+
+.modControls #Accept {
+  background-color: #5CACF2;
+  color: #ffffff;
+  border: none;
+  margin-right: 5px;
+}
+
+.modControls #Decline {
+  background-color: #F25270;
+  color: #ffffff;
+  border: none;
+  margin-left: 5px;
+}
+
 body {
   /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
 }
