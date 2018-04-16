@@ -7,7 +7,12 @@ let config = {
   session: {
     secret: 'sessionlolidsk'
   },
-  postgres: ''
+  postgres: '',
+  endpoints: {
+    base: 'https://api.memeit.com/',
+    img: 'new',
+    memes: 'memes'
+  }
 }
 
 module.exports = config

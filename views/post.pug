@@ -12,7 +12,7 @@ block content
       div(class="collapse show" id="collapseExample")
         div(class="card card-body" style="display: flex; flex-wrap: wrap; flex-direction: row; justify-content: space-evenly;")
           each image in images
-            img(src=`https://memeit.lol/photos/memes/thumbnail/${image.replace("''", "\''")}` width="50" height="50" onclick=`window.change('https://memeit.lol/photos/memes/thumbnail/${image}');`)
+            img(src=`https://memeit.lol/photos/memes/thumbnail/${image}` width="50" height="50" onclick=`window.change('https://memeit.lol/photos/memes/thumbnail/${image}');`)
       label Meme
       canvas(id="canvas")
       label Change Text

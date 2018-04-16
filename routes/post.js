@@ -2,62 +2,60 @@ let express = require('express')
 let util = require('../modules/util')
 let steem = require('../modules/steemconnect')
 let delegator = require('../modules/delegators')
+let config = require('../config')
 let router = express.Router()
 let fs = require('fs')
+let axios = require('axios')
 let db = require('../db')
 
 router.get('/', util.isAuthenticated, (req, res, next) => {
-  var images
-  try {
-    images = fs.readdirSync('../memes')
-  } catch (err) {
-    images = []
-  }
-  res.render('post', {
-    name: req.session.steemconnect.name,
-    images
+  axios.default.get(config.endpoints.base + config.endpoints.memes).then(images => {
+    return images.data.images
+  }).then(images => {
+    res.render('post', {
+      name: req.session.steemconnect.name,
+      images
+    })
   })
 })
 
 router.post('/create-post', util.isAuthenticated, (req, res) => {
-  var images
-  try {
-    images = fs.readdirSync('../memes')
-  } catch (err) {
-    images = []
-  }
-  let author = req.session.steemconnect.name
-  let permlink = util.urlString()
-  var tags = req.body.tags.split(',').map(item => item.trim())
-  let primaryTag = 'memeitlol'
-  let otherTags = tags.slice(0, 4)
-  let title = req.body.title
-  let done = false
-  db.client.query(db.post(title, author, permlink, req.body.image))
-  delegator.getWeights('memeit.lol', function (data) {
-    if (!done) {
-      let ben = []
-      for (let key in data) {
-        ben.push({'account': key, 'weight': data[key]})
-      }
-      steem.broadcast([['comment', {'parent_author': '', 'parent_permlink': primaryTag, 'author': author, 'permlink': permlink, 'title': title, 'body': `<img src="${req.body.image}" />`, 'json_metadata': JSON.stringify({app: 'memeit.lol/0.0.1', tags: [primaryTag, ...otherTags], image: [req.body.image]})}], ['comment_options', {'author': author, 'permlink': permlink, 'max_accepted_payout': '1000000.000 SBD', 'percent_steem_dollars': 10000, 'allow_votes': true, 'allow_curation_rewards': true, 'extensions': [[0, {'beneficiaries': ben}]]}]], function (err, response) {
-        if (err) {
-          res.render('post', {
-            name: req.session.steemconnect.name,
-            msg: 'Error',
-            images
-          })
-          console.log(err)
-        } else {
-          res.render('post', {
-            name: req.session.steemconnect.name,
-            msg: 'Posted To Steem Network',
-            images
-          })
+  axios.default.get(config.endpoints.base + config.endpoints.memes).then(images => {
+    return images.data.images
+  }).then(images => {
+    let author = req.session.steemconnect.name
+    let permlink = util.urlString()
+    var tags = req.body.tags.split(',').map(item => item.trim())
+    let primaryTag = 'memeitlol'
+    let otherTags = tags.slice(0, 4)
+    let title = req.body.title
+    let done = false
+    db.client.query(db.post(title, author, permlink, req.body.image))
+    delegator.getWeights('memeit.lol', function (data) {
+      if (!done) {
+        let ben = []
+        for (let key in data) {
+          ben.push({'account': key, 'weight': data[key]})
         }
-      })
-      done = true
-    }
+        steem.broadcast([['comment', {'parent_author': '', 'parent_permlink': primaryTag, 'author': author, 'permlink': permlink, 'title': title, 'body': `<img src="${req.body.image}" />`, 'json_metadata': JSON.stringify({app: 'memeit.lol/0.0.1', tags: [primaryTag, ...otherTags], image: [req.body.image]})}], ['comment_options', {'author': author, 'permlink': permlink, 'max_accepted_payout': '1000000.000 SBD', 'percent_steem_dollars': 10000, 'allow_votes': true, 'allow_curation_rewards': true, 'extensions': [[0, {'beneficiaries': ben}]]}]], function (err, response) {
+          if (err) {
+            res.render('post', {
+              name: req.session.steemconnect.name,
+              msg: 'Error',
+              images
+            })
+            console.log(err)
+          } else {
+            res.render('post', {
+              name: req.session.steemconnect.name,
+              msg: 'Posted To Steem Network',
+              images
+            })
+          }
+        })
+        done = true
+      }
+    })
   })
 })
 
