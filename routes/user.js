@@ -1,20 +1,19 @@
-let express = require('express');
-let util = require('../modules/util');
-let router = express.Router();
+let express = require('express')
+let util = require('../modules/util')
+let router = express.Router()
 
 /* GET users listing. */
 router.get('/', util.isAuthenticated, (req, res, next) => {
-      let userMetadata = {};
-      if (req.session.steemconnect.json_metadata == '' || req.session.steemconnect.json_metadata === undefined) {
-        userMetadata.profile = { about: ''}
-      } else {
-        userMetadata = JSON.parse(req.session.steemconnect.json_metadata)
-      }
-      res.render('dashboard', {
-        name: req.session.steemconnect.name,
-        about: userMetadata.profile.about,
-        profileImage: userMetadata.profile.profile_image
-      });
-});
 
-module.exports = router;
+  const userMetadata = !!req.session.steemconnect.json_metadata
+    ? JSON.parse(req.session.steemconnect.json_metadata)
+    : {};
+
+  res.render('dashboard', {
+    name: req.session.steemconnect.name,
+    about: userMetadata.profile ? userMetadata.profile.about : '',
+    profileImage: userMetadata.profile ? userMetadata.profile.profile_image : 'http://via.placeholder.com/100x100'
+  })
+})
+
+module.exports = router
