@@ -14,7 +14,7 @@ function draw () {
 }
 
 function addText() {
-  var text = new fabric.Text('CLICK ON ME', { left: 0, top: 0, fontFamily: 'Impact', fontSize: 40, stroke: '#000000', strokeWidth: 3, fill: "#ffffff" });
+  var text = new fabric.Textbox('CLICK ON ME', { width: 280,breakWords: true,left: 0, top: 0, fontFamily: 'Impact', fontSize: 40, stroke: '#000000', strokeWidth: 3, fill: "#ffffff" });
   c.add(text);
 }
 
@@ -27,7 +27,7 @@ function drawMeme (src) {
       var scale = image.width / image.height
       c.backgroundImage.scaleToWidth(300)
       c.setDimensions({width: 300 * scale,height: 300})
-      var text = new fabric.Text('memeit.lol', { left: 7, top: 285, fontFamily: 'Impact', fontSize: 10, stroke: '#000000', strokeWidth: .75, fill: "#ffffff" });
+      var text = new fabric.Text('memeit.lol', { left: 7, top: 275, fontFamily: 'Impact', fontSize: 25, stroke: '#000000', strokeWidth: .75, fill: "#ffffff" });
       c.add(text);
       c.item(0).selectable = false;
     }, {crossOrigin: 'anonymous'})
