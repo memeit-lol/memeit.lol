@@ -1,1 +1,1 @@
-sudo nodemon
+npm run production

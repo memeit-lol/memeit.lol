@@ -6,6 +6,12 @@ let config = {
   },
   session: {
     secret: 'sessionlolidsk'
+  },
+  mongodb: '',
+  endpoints: {
+    base: 'https://api.memeit.com/',
+    img: 'new',
+    memes: 'memes'
   }
 }
 

@@ -1,16 +1,16 @@
 const steem = require('steem')
-let db = require('../modules/db')
+let db = require('../db')
 
 var delegationTransactions = []
 
-function loadDelegations (account, callback) {
-  getTransactions(account, -1, callback)
+async function loadDelegations (account, callback) {
+  await getTransactions(account, -1, callback)
 }
 
-function getTransactions (account, start, callback) {
+async function getTransactions (account, start, callback) {
   var lastTrans = start
 
-  steem.api.getAccountHistory(account, start, (start < 0) ? 10000 : Math.min(start, 10000), function (err, result) {
+  await steem.api.getAccountHistory(account, start, (start < 0) ? 10000 : Math.min(start, 10000), async function (err, result) {
     if (err) {
       console.log(err)
       return
@@ -28,7 +28,7 @@ function getTransactions (account, start, callback) {
 
     if (lastTrans > 0 && lastTrans !== start) { getTransactions(account, lastTrans, callback) }
 
-    processDelegations(callback)
+    await processDelegations(callback)
   })
 }
 
@@ -50,7 +50,7 @@ function processDelegations (callback) {
 
   delegationTransactions = []
 
-  if (callback) { callback(delegations.filter(function (d) { return parseFloat(d.vesting_shares) > 99904.3171 })) }
+  if (callback) { callback(delegations.filter(function (d) { return parseFloat(d.vesting_shares) > 99888 }).sort(function (a, b) { return parseFloat(b.vesting_shares.replace(' VESTS', '')) - parseFloat(a.vesting_shares.replace(' VESTS', '')) })) }
 }
 
 function add (object, name, value) {
@@ -67,14 +67,16 @@ function add (object, name, value) {
   return object
 }
 
-function getWeights (account, callback) {
-  loadDelegations(account, function (del) {
-    var mods = db.getModNames()
+async function getWeights (account, callback) {
+  await loadDelegations(account, async function (del) {
+    let mods = await db.mod.find({})
+    mods = mods.map(mod => mod.steem)
     var weights = {}
-    weights = add(weights, 'lol.pay', 1000)
     mods.forEach(mod => {
       weights = add(weights, mod, 100)
     })
+    del = del.filter(function (d) { return d.delegator !== 'spotlight' })
+    weights = add(weights, 'lol.pay', 1000)
     var total = 0
     var past = 0
     del.forEach(function (de) {
@@ -87,10 +89,10 @@ function getWeights (account, callback) {
       var per = parseFloat(de.vesting_shares.replace(' VESTS', '')) / total
       if (chance >= past && chance <= per + past) {
         weights = add(weights, de.delegator, 500)
-      } else
+      }
       if (chance2 >= past && chance2 <= per + past) {
         weights = add(weights, de.delegator, 500)
-      } else
+      }
       if (chance3 >= past && chance3 <= per + past) {
         weights = add(weights, de.delegator, 500)
       }

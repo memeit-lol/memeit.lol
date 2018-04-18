@@ -8,7 +8,23 @@ module.exports.urlString = () => {
 }
 
 module.exports.isAuthenticated = (req, res, next) => {
-  if (req.session.steemconnect) { return next() }
+  if (req.session.token && req.session.steemconnect) {
+    let steem = require('./steemconnect')
+    steem.setAccessToken(req.session.token)
+    next()
+  } else res.redirect('/')
+}
 
-  res.redirect('/')
+module.exports.isMod = async (req, res, next) => {
+  let mod = require('../db').mod
+  if (req.session.steemconnect) {
+    let is = await mod.find({steem: req.session.steemconnect.name, banned: false})
+    if (is.length === 1) {
+      return next()
+    } else {
+      res.redirect('/')
+    }
+  } else {
+    res.redirect('/')
+  }
 }

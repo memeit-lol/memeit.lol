@@ -3,8 +3,14 @@ extends layout
 block content
   include partials/nav
 
-  main.feed(data-feed-type=`${feed}`)
-    .container
-      .row.feed-insert
+  main
+    for post in posts
+      div.item
+        a(href=`/@${post.author}/${post.permlink}`): img.item__image(src=`https://steemitimages.com/520x520/${post.img}`)
+        div.item__author
+          a(href=`/@${post.author}/${post.permlink}`): h2 #{post.title}
+          a(href=`/@${post.author}`): span @#{post.author}
+    if posts.length === 10
+      a(href=`/feed/${feed}/${num}`) Next
 
   script(src='/js/showdown.min.js')
