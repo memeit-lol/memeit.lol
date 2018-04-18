@@ -3,4 +3,17 @@ extends layout
 block content
   include partials/nav
 
-  main.single(data-username=`${username}` data-permlink=`${permlink}` data-category=`${category}`)
+  main
+    img(src=i.img class='author-img' height='35' width='35')
+    span(class="overlay__author-username") #{i.author}
+    div(class="tags") !{i.tags}
+    h2(class="title") #{i.title}
+    div !{i.body}
+    div.postControls
+      button.vote(onclick=`window.location = '/post/vote/@${i.author}/${i.permlink}'`) Vote
+      button.comment(onclick=`window.location = '/post/comment/@${i.author}/${i.permlink}'`) Comment
+    div.comments
+      for comment in i.comments
+        div.comment
+          a(href=`/@${comment.author}`) #{comment.author}
+          div !{comment.body}

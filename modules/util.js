@@ -8,22 +8,22 @@ module.exports.urlString = () => {
 }
 
 module.exports.isAuthenticated = (req, res, next) => {
-  if (req.session.steemconnect) { return next() }
-
-  res.redirect('/')
+  if (req.session.token && req.session.steemconnect) {
+    let steem = require('./steemconnect')
+    steem.setAccessToken(req.session.token)
+    next()
+  } else res.redirect('/')
 }
 
-module.exports.isMod = (req, res, next) => {
-  var client = require('../db').client
+module.exports.isMod = async (req, res, next) => {
+  let mod = require('../db').mod
   if (req.session.steemconnect) {
-    client.query('SELECT ID FROM mods WHERE STEEM = \'' + req.session.steemconnect.name + '\';').then(resp => {
-      console.log(resp)
-      if (resp.rowCount === 1) {
-        return next()
-      } else {
-        res.redirect('/')
-      }
-    })
+    let is = await mod.find({steem: req.session.steemconnect.name, banned: false})
+    if (is.length === 1) {
+      return next()
+    } else {
+      res.redirect('/')
+    }
   } else {
     res.redirect('/')
   }

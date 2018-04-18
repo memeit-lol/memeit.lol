@@ -7,7 +7,7 @@ let config = {
   session: {
     secret: 'sessionlolidsk'
   },
-  postgres: '',
+  mongodb: '',
   endpoints: {
     base: 'https://api.memeit.com/',
     img: 'new',

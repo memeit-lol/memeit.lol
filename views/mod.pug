@@ -6,8 +6,8 @@ block content
   main
     h1 Vote For Posts
     each post in posts
-      div(class="modPost")
-        img(src=`http://via.placeholder.com/500x500`)
+      div(class="modPost" data-post=`${post.author}/${post.permlink}`)
+        img(src=`https://steemitimages.com/520x520/${post.img}`)
         div(class="modControls")
           button(id="Accept" data-post=`${post.author}/${post.permlink}`) Accept
           button(id="Decline" data-post=`${post.author}/${post.permlink}`) Decline

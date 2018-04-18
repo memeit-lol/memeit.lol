@@ -117,10 +117,6 @@ main, aside {
 img {
   max-width: 100%;
 }
-.item {
-  border: solid 1px #ccc;
-  margin: 30px 0;
-}
 .comment {
   margin: 15px 0;
 }
@@ -154,7 +150,7 @@ input:focus, textarea:focus {
 }
 
 textarea {
-  min-height: 400px;
+  min-height: 100px;
 }
 
 button, input[type="submit"] {
@@ -163,6 +159,64 @@ button, input[type="submit"] {
 
 .vote {
   width: 100px;
+  background: #4e5ba6;
+  background: -moz-linear-gradient(-45deg,  #4e5ba6 0%, #7db9e8 100%);
+  background: -webkit-linear-gradient(-45deg,  #4e5ba6 0%,#7db9e8 100%);
+  background: linear-gradient(135deg,  #4e5ba6 0%,#7db9e8 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4e5ba6', endColorstr='#7db9e8',GradientType=1 );
+  border-radius: 3px;
+  border: none;
+  color: #ffffff;
+  float: left;
+  transition: all 0.05s ease-in-out;
+}
+
+#add {
+  width: 100%;
+  background: #4e5ba6;
+  background: -moz-linear-gradient(-45deg,  #4e5ba6 0%, #7db9e8 100%);
+  background: -webkit-linear-gradient(-45deg,  #4e5ba6 0%,#7db9e8 100%);
+  background: linear-gradient(135deg,  #4e5ba6 0%,#7db9e8 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4e5ba6', endColorstr='#7db9e8',GradientType=1 );
+  border-radius: 3px;
+  border: none;
+  color: #ffffff;
+  transition: all 0.05s ease-in-out;
+}
+
+button.comment {
+  width: 100px;
+  background: #f21470;
+  background: -moz-linear-gradient(-45deg, #f21470 0%, #f26d91 100%);
+  background: -webkit-linear-gradient(-45deg, #f21470 0%,#f26d91 100%);
+  background: linear-gradient(135deg, #f21470 0%,#f26d91 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f21470', endColorstr='#f26d91',GradientType=1 );
+  border-radius: 3px;
+  border: none;
+  float: right;
+  color: #ffffff;
+  transition: all 0.05s ease-in-out;
+}
+
+#submitBTN {
+  width: 100%;
+  background: #f21470;
+  background: -moz-linear-gradient(-45deg, #f21470 0%, #f26d91 100%);
+  background: -webkit-linear-gradient(-45deg, #f21470 0%,#f26d91 100%);
+  background: linear-gradient(135deg, #f21470 0%,#f26d91 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f21470', endColorstr='#f26d91',GradientType=1 );
+  border-radius: 3px;
+  border: none;
+  color: #ffffff;
+  transition: all 0.05s ease-in-out;
+}
+
+.vote:hover, button.comment:hover, #submitBTN:hover, #add:hover {
+  box-shadow: 0 0 20px 1px #b5b5b5;
+}
+
+.postControls {
+  display: flow-root;
 }
 
 .comment-message {
@@ -175,4 +229,11 @@ button, input[type="submit"] {
   padding: 10px;
   border: solid 1px #7b7b7b;
   margin: 20px 0 40px;
+}
+
+
+.item {
+  margin-bottom: 30px;
+  padding: 30px;
+  background-color: #F2F2F2;
 }

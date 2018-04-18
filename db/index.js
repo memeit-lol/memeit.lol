@@ -1,15 +1,7 @@
-const { Client } = require('pg')
+const mongoose = require('mongoose')
 const config = require('../config')
-const mod = require('./insert_mod')
-const post = require('./insert_post')
-const vote = require('./insert_vote')
-
-const client = new Client({
-  connectionString: config.postgres
-})
-
-client.connect()
+mongoose.connect(config.mongodb)
 
 module.exports = {
-  client, mod, post, vote
+  mod: require('./models/mod'), vote: require('./models/vote'), post: require('./models/post')
 }

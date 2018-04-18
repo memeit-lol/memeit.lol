@@ -3,7 +3,23 @@ extends layout
 block content
   include partials/nav
 
-  main.profile(data-username=`${name}`)
+  main
+    section.profile
+      h2 @#{d.name} [#{d.rep}]
+      img(src=d.image width='100px')
+      h5 Followers: #{d.followerCount} | Following: #{d.followingCount}
+      h5 Steem Power: #{d.sp} (#{d.s})
+      h5 Voting Power: #{d.vp}%
+    br
+    if posts.length > 0
+      h2 #{posts.length} Latest Posts Made By @#{d.name}
+      for post in posts
+        div.item
+          a(href=`/@${post.author}/${post.permlink}`): img.item__image(src=`https://steemitimages.com/520x520/${post.img}`)
+          div.item__author
+            a(href=`/@${post.author}/${post.permlink}`): h2 #{post.title}
+            a(href=`/@${post.author}`): span @#{post.author}
+    else
+      h2 @#{d.name} Has No Posts On Memeit
 
-    section.container
-      .row.feed-insert
+  script(src='/js/showdown.min.js')

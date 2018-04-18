@@ -4,22 +4,18 @@ block content
   include partials/nav
   
   main
-    h1 Create Post
-    form(action="/post/create-post/" method="post" id="form")
+    h1 Create Comment
+    form(action=`/post/comment/@${author}/${permlink}` method="post" id="form")
       label 1) Choose Your Meme
       div(class="collapse show" id="collapseExample")
         div(class="card card-body" style="display: flex; flex-wrap: wrap; flex-direction: row; justify-content: space-evenly;")
           each image in images
             img(src=`https://memeit.lol/photos/memes/thumbnail/${image}` width="50" height="50" onclick=`window.change('https://memeit.lol/photos/memes/thumbnail/${image}');$('html, body').animate({scrollTop: $("#t").offset().top}, 500);`)
-      label(id="t") 2) Add Title
-      input(type="text" name="title")
+      div#t
       canvas(id="canvas")
-      label 3) Add Text
+      label 2) Add Text
       input(id="text" type="text")
       button(id="add" onclick="addText();") Add More Text
-      label 4) Add Tags (Separated by commas)
-      input(type="text" name="tags")
       input(type="hidden" name="image" id="image")
       button(id="submitBTN") Submit
-      p Posting as #{name}
   script(src="/js/new.js")

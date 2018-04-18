@@ -1,17 +1,39 @@
 let express = require('express')
 let util = require('../modules/util')
 let router = express.Router()
-let client = require('../db').client
+let db = require('../db')
 
-router.get('/', util.isMod, (req, res, next) => {
-  client.query('SELECT * FROM POSTS WHERE VOTED = false;').then((resp) => {
-    if (resp.rowCount > 0) {
-      res.render('mod', {
-        posts: resp.rows
-      })
-    } else {
-    }
-  })
+router.get('/', util.isMod, async (req, res, next) => {
+  let posts = await db.post.find({voted: false})
+  if (posts.length > 0) {
+    res.render('mod', {
+      posts,
+      logged: res.logged,
+      mod: res.mod,
+      username: req.session.steemconnect.name
+    })
+  } else {
+    res.render('none', {
+      logged: res.logged,
+      mod: res.mod,
+      username: req.session.steemconnect.name
+    })
+  }
+})
+
+router.post('/vote', util.isMod, function (req, res) {
+  let post = req.body.post
+  let author = post.split('/')[0]
+  let permlink = post.split('/')[1]
+  let vote = req.body.value
+  new db.vote({
+    mod: req.session.steemconnect.name,
+    post,
+    approved: vote
+  }).save()
+  db.post.findOneAndUpdate({author, permlink}, {voted: true, hidden: !vote}).exec()
+  db.mod.findOneAndUpdate({steem: req.session.steemconnect.name}, {$inc: {votes: 1}}).exec()
+  res.sendStatus(200)
 })
 
 module.exports = router

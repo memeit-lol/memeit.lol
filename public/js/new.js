@@ -48,7 +48,7 @@ submit.addEventListener('click', function (e) {
 })
 draw()
 c.on('object:selected', function(e) {
-  text.value = c.getActiveObject();
+  text.value = c.getActiveObject().text;
 });
 text.addEventListener('keyup', function (e) {
   var obj = c.getActiveObject();

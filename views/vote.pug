@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  include partials/nav
+  
+  main
+    h1 Upvote Post
+    form(action=`/post/vote/@${author}/${permlink}` method="post" id="form")
+      h3 Are You Sure?
+      button(id="submitBTN") Yes

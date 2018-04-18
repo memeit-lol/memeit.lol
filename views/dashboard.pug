@@ -7,7 +7,13 @@ block content
     img(src=`${profileImage}` width="50px")
     h3 #{name}
     p #{about}
+  main
+    h4 Latest Posts
+    for post in posts
+      div.item
+        a(href=`/@${post.author}/${post.permlink}`): img.item__image(src=`https://steemitimages.com/520x520/${post.img}`)
+        div.item__author
+          a(href=`/@${post.author}/${post.permlink}`): h2 #{post.title}
+          a(href=`/@${post.author}`): span @#{post.author}
 
-  main.dashboard(data-username=`${name}`)
-    section.container
-      .row.feed-insert
+  script(src='/js/showdown.min.js')
