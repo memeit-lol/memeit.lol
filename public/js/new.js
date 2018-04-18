@@ -14,7 +14,7 @@ function draw () {
 }
 
 function addText() {
-  var text = new fabric.Text('CLICK ON ME', { left: 0, top: 0, fontFamily: 'Impact', fontSize: 40, stroke: '#000000', strokeWidth: 3, fill: "#ffffff" });
+  var text = new fabric.Textbox('CLICK ON ME', {width: 200,breakWords: true, textAlign:'center',left: 0, top: 0, fontFamily: 'Impact', fontSize: 40, stroke: '#000000', strokeWidth: 3, fill: "#ffffff" });
   c.add(text);
 }
 
