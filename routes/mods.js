@@ -4,7 +4,7 @@ let router = express.Router()
 let db = require('../db')
 
 router.get('/', util.isMod, async (req, res, next) => {
-  let posts = await db.post.find({voted: false})
+  let posts = await db.post.find({voted: false, author: { $not: { $eq: req.session.steemconnect.name } }})
   if (posts.length > 0) {
     res.render('mod', {
       posts,
@@ -24,16 +24,20 @@ router.get('/', util.isMod, async (req, res, next) => {
 router.post('/vote', util.isMod, function (req, res) {
   let post = req.body.post
   let author = post.split('/')[0]
-  let permlink = post.split('/')[1]
-  let vote = req.body.value
-  new db.vote({
-    mod: req.session.steemconnect.name,
-    post,
-    approved: vote
-  }).save()
-  db.post.findOneAndUpdate({author, permlink}, {voted: true, hidden: !vote}).exec()
-  db.mod.findOneAndUpdate({steem: req.session.steemconnect.name}, {$inc: {votes: 1}}).exec()
-  res.sendStatus(200)
+  if (author === req.session.steemconnect.name) {
+    res.sendStatus(403)
+  } else {
+    let permlink = post.split('/')[1]
+    let vote = req.body.value
+    new db.vote({
+      mod: req.session.steemconnect.name,
+      post,
+      approved: vote
+    }).save()
+    db.post.findOneAndUpdate({author, permlink}, {voted: true, hidden: !vote}).exec()
+    db.mod.findOneAndUpdate({steem: req.session.steemconnect.name}, {$inc: {votes: 1}}).exec()
+    res.sendStatus(200)
+  }
 })
 
 module.exports = router
