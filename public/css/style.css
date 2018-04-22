@@ -89,9 +89,16 @@ a {
   color: #eeeeee !important;
 }
 
+.nav-item {
+  margin: 10px 8px;
+}
+
+.nav-item a {
+  color: #ffffff !important;
+}
+
 .nav-btn {
-  padding-left: 1.5rem !important;
-  padding-right: 1.5rem !important;
+  padding: 5px 20px !important;
   background-color: #F26D91 !important;
 }
 
