@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  include partials/nav
+  include partials/nav3
 
   aside
     img(src=`${profileImage}` width="50px")
@@ -15,5 +15,9 @@ block content
         div.item__author
           a(href=`/@${post.author}/${post.permlink}`): h2 #{post.title}
           a(href=`/@${post.author}`): span @#{post.author}
+        if logged
+          div.postControls
+            button.vote(onclick=`window.location = '/post/vote/@${post.author}/${post.permlink}'`) Vote
+            button.comment(onclick=`window.location = '/post/comment/@${post.author}/${post.permlink}'`) Comment
 
   script(src='/js/showdown.min.js')

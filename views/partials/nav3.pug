@@ -1,0 +1,39 @@
+if logged
+  nav(class="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation")
+    a.navbar-brand(href="/"): img(src="/icon.svg" height="30px")
+    button(style="width:70px; border-color: #ffffffb3;" type="button" class="navbar-toggler" data-toggle="collapse" data-target="#bs")
+      span(class="navbar-toggler-icon")
+    div( class="collapse navbar-collapse flex-row-reverse" id="bs")
+      ul(class="navbar-nav")
+        li.nav-item
+          a(href="/feed/approved") Approved
+        li.nav-item
+          a(href="/feed/all") All
+        li.nav-item
+          a.nav-btn(href="/auth", style="color: #ffffff;") Create Post
+        if mod
+          li.nav-item
+            a(href="/mods") Mod
+        li.nav-item
+          a(href=`/@${username}`) Profile
+        li.nav-item
+          a(href="/auth/logout") Logout
+else
+  nav(class="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation")
+    a.navbar-brand(href="/"): img(src="/icon.svg" height="30px")
+    button(style="width:70px; border-color: #ffffffb3;" type="button" class="navbar-toggler" data-toggle="collapse" data-target="#bs")
+      span(class="navbar-toggler-icon")
+    div( class="collapse navbar-collapse flex-row-reverse" id="bs")
+      ul(class="navbar-nav")
+        li.nav-item
+          a(href="/feed/approved") Approved
+        li.nav-item
+          a(href="/feed/all") All
+        li.nav-item
+          a(href="/faq") FAQ
+        li.nav-item
+          a(href="/supporters") Supporters
+        li.nav-item
+          a.nav-btn(href="/auth", style="color: #ffffff;") Login
+        li.nav-item
+          a(href="https://signup.steemit.com/") Sign Up

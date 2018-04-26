@@ -20,12 +20,18 @@ router.get('/', (req, res, next) => {
 router.get('/@:username?', (req, res, next) => {
   info.getAccountInfo(req.params.username).then(async d => {
     let posts = await db.post.find({author: req.params.username}).sort({time: -1}).limit(10)
-    res.render('profile', {
+    if (res.logged) res.render('profile', {
       d,
       posts,
       logged: res.logged,
       mod: res.mod,
       username: req.session.steemconnect.name
+    })
+    else res.render('profile', {
+      d,
+      posts,
+      logged: res.logged,
+      mod: res.mod
     })
   })
 })
@@ -55,11 +61,16 @@ router.get('/:category/@:username/:permlink', (req, res, next) => {
     i.comments = await info.getComments(i.author, i.permlink)
     return i
   }).then(i => {
-    res.render('single', {
+    if (res.logged) res.render('single', {
       i,
       logged: res.logged,
       mod: res.mod,
       username: req.session.steemconnect.name
+    })
+    else res.render('single', {
+      i,
+      logged: res.logged,
+      mod: res.mod
     })
   })
 })
@@ -72,11 +83,16 @@ router.get('/@:username/:permlink', (req, res, next) => {
     i.comments = await info.getComments(i.author, i.permlink)
     return i
   }).then(i => {
-    res.render('single', {
+    if (res.logged) res.render('single', {
       i,
       logged: res.logged,
       mod: res.mod,
       username: req.session.steemconnect.name
+    })
+    else res.render('single', {
+      i,
+      logged: res.logged,
+      mod: res.mod
     })
   })
 })

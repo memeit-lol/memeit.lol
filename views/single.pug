@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  include partials/nav
+  include partials/nav3
 
   main
     img(src=i.img class='author-img' height='35' width='35')
@@ -9,9 +9,10 @@ block content
     div(class="tags") !{i.tags}
     h2(class="title") #{i.title}
     div !{i.body}
-    div.postControls
-      button.vote(onclick=`window.location = '/post/vote/@${i.author}/${i.permlink}'`) Vote
-      button.comment(onclick=`window.location = '/post/comment/@${i.author}/${i.permlink}'`) Comment
+    if logged
+      div.postControls
+        button.vote(onclick=`window.location = '/post/vote/@${i.author}/${i.permlink}'`): i(class="fas fa-chevron-circle-up")
+        button.comment(onclick=`window.location = '/post/comment/@${i.author}/${i.permlink}'`): i(class="fas fa-pen-square")
     div.comments
       for comment in i.comments
         div.comment

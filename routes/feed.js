@@ -4,7 +4,7 @@ let router = express.Router()
 let db = require('../db')
 
 /* GET users listing. */
-router.get('/:feed', util.isAuthenticated, async (req, res, next) => {
+router.get('/:feed', async (req, res, next) => {
   let posts
   if (req.params.feed === 'all') {
     posts = await db.post.find({}).sort({time: -1}).limit(10)
@@ -13,7 +13,7 @@ router.get('/:feed', util.isAuthenticated, async (req, res, next) => {
   } else {
     posts = []
   }
-  res.render('feed', {
+  if (res.logged) res.render('feed', {
     posts,
     logged: res.logged,
     mod: res.mod,
@@ -21,9 +21,16 @@ router.get('/:feed', util.isAuthenticated, async (req, res, next) => {
     feed: req.params.feed,
     username: req.session.steemconnect.name
   })
+  else res.render('feed', {
+    posts,
+    logged: res.logged,
+    mod: res.mod,
+    num: 1,
+    feed: req.params.feed
+  })
 })
 
-router.get('/:feed/:num', util.isAuthenticated, async (req, res, next) => {
+router.get('/:feed/:num', async (req, res, next) => {
   let posts
   if (req.params.feed === 'all') {
     posts = await db.post.find({}).sort({time: -1}).skip(req.params.num * 10).limit(10)
@@ -32,13 +39,20 @@ router.get('/:feed/:num', util.isAuthenticated, async (req, res, next) => {
   } else {
     posts = []
   }
-  res.render('feed', {
+  if (res.logged) res.render('feed', {
     posts,
     logged: res.logged,
     mod: res.mod,
     num: req.params.num + 1,
     feed: req.params.feed,
     username: req.session.steemconnect.name
+  })
+  else res.render('feed', {
+    posts,
+    logged: res.logged,
+    mod: res.mod,
+    num: req.params.num + 1,
+    feed: req.params.feed
   })
 })
 
