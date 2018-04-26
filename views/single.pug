@@ -11,8 +11,8 @@ block content
     div !{i.body}
     if logged
       div.postControls
-        button.vote(onclick=`window.location = '/post/vote/@${i.author}/${i.permlink}'`) Vote
-        button.comment(onclick=`window.location = '/post/comment/@${i.author}/${i.permlink}'`) Comment
+        button.vote(onclick=`window.location = '/post/vote/@${i.author}/${i.permlink}'`): i(class="fas fa-chevron-circle-up")
+        button.comment(onclick=`window.location = '/post/comment/@${i.author}/${i.permlink}'`): i(class="fas fa-pen-square")
     div.comments
       for comment in i.comments
         div.comment

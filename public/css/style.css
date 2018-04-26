@@ -178,7 +178,7 @@ button, input[type="submit"] {
 }
 
 .vote {
-  width: 100px;
+  width: 40px;
   background: #4e5ba6;
   background: -moz-linear-gradient(-45deg,  #4e5ba6 0%, #7db9e8 100%);
   background: -webkit-linear-gradient(-45deg,  #4e5ba6 0%,#7db9e8 100%);
@@ -205,7 +205,7 @@ button, input[type="submit"] {
 }
 
 button.comment {
-  width: 100px;
+  width: 40px;
   background: #f21470;
   background: -moz-linear-gradient(-45deg, #f21470 0%, #f26d91 100%);
   background: -webkit-linear-gradient(-45deg, #f21470 0%,#f26d91 100%);
