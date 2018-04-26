@@ -98,8 +98,21 @@ a {
 }
 
 .nav-btn {
-  padding: 5px 20px !important;
-  background-color: #F26D91 !important;
+  padding: 7px 20px !important;
+  width: 100%;
+  background: #f21470;
+  background: -moz-linear-gradient(-45deg, #f21470 0%, #f26d91 100%);
+  background: -webkit-linear-gradient(-45deg, #f21470 0%,#f26d91 100%);
+  background: linear-gradient(135deg, #f21470 0%,#f26d91 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f21470', endColorstr='#f26d91',GradientType=1 );
+  border-radius: 3px;
+  border: none;
+  color: #ffffff;
+  transition: all 0.05s ease-in-out;
+}
+
+.nav-btn:hover {
+  box-shadow: 0 0 20px 1px #1b1b1b47;
 }
 
 .navbar-dark {

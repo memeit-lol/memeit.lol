@@ -1,10 +1,10 @@
 extends layout
 
 block content
-  include partials/nav2
+  include partials/nav3
   
-  main
-    h1= "Welcome to Memeit.LOL"
-    body
-    p You can use Memeit.LOL to create original memes and post them to the Steem Blockchain.<br> Our in-house moderator team will determine which memes get published and which memes get hidden.<br> Bring your dankest original memes and get published today!
-    h4 #[a(href="/auth") Login with Steemconnect] or #[a(href="https://signup.steemit.com/") Sign up Now!]
+  main(style="background-image: url(/finalsplash.jpg); background-position-x: right; background-size: cover; width: 100%; height: 100vh; margin: 0 auto; max-width: initial; color: #ffffff; text-shadow: 1px 1px 3px #000000;")
+    div(style="max-width: 500px;margin: 0 auto;")
+      h1 Welcome to Memeit.LOL
+      h5 You can use Memeit.LOL to create original memes and post them to the Steem Blockchain.<br> Our in-house moderator team will determine which memes get published and which memes get hidden.<br> Bring your dankest original memes and get published today!
+      h4 #[a(href="/auth") Login with Steemconnect] or #[a(href="https://signup.steemit.com/") Sign up Now!]
