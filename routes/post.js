@@ -14,6 +14,8 @@ router.get('/', util.isAuthenticated, (req, res, next) => {
     res.render('post', {
       name: req.session.steemconnect.name,
       images,
+      logged: res.logged,
+      mod: res.mod,
       username: req.session.steemconnect.name
     })
   })
@@ -64,7 +66,9 @@ router.get('/vote/@:author/:permlink', util.isAuthenticated, (req, res) => {
   let permlink = req.params.permlink
   res.render('vote', {
     author, permlink,
-    username: req.session.steemconnect.name
+    username: req.session.steemconnect.name,
+    logged: res.logged,
+    mod: res.mod
   })
 })
 
@@ -92,7 +96,9 @@ router.get('/comment/@:author/:permlink', util.isAuthenticated, (req, res) => {
       permlink: req.params.permlink,
       author: req.params.author,
       images,
-      username: req.session.steemconnect.name
+      username: req.session.steemconnect.name,
+      logged: res.logged,
+      mod: res.mod
     })
   })
 })
@@ -112,6 +118,11 @@ router.post('/comment/@:author/:permlink', util.isAuthenticated, (req, res) => {
       res.redirect(`/@${author}/${permlink}`)
     }
   })
+})
+
+router.post('/delegate', (req, res) => {
+  let sp = req.body.sp
+  res.redirect('https://steemconnect.com/sign/delegate-vesting-shares?delegatee=memeit.lol&vesting_shares=' + sp + '%20SP&redirect_uri=https://memeit.lol/supporters')
 })
 
 module.exports = router

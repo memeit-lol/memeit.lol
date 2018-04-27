@@ -9,8 +9,13 @@ block content
     p Become a Memeit.LOL supporter and receive proceeds from memes generated on Memeit.LOL!
     h2= ""
     p On Memeit.LOL, 12% of the rewards of every post are distributed among our supporters. 
-    p To become gain benefits from this system, all you have to do is to delegate Steem Power to Memeit.LOL. The more Steem Power you delegate, the higher your chance to be rewarded. The Memeit.LOL bot uses the collected Steem Power to upvote submissions. Moderators control the bots upvotes based on their combined input on posts. Become a Supporter (coming soon)
+    p To become gain benefits from this system, all you have to do is to delegate Steem Power to Memeit.LOL. The more Steem Power you delegate, the higher your chance to be rewarded. The Memeit.LOL bot uses the collected Steem Power to upvote submissions. Moderators control the bots upvotes based on their combined input on posts.
+    form(method="POST" action="/post/delegate")
+      label Delegate Steem Power:
+        input(name="sp", type="number" value="50")
+        button(type="submit" id="add") Delegate
+    h3 Delegators
     ul
       each supporter in delegators
         li
-          h3= supporter.delegator
+          h4= supporter.delegator
