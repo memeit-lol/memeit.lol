@@ -441,16 +441,18 @@ let modal = document.getElementById('myModal');
 let span = document.getElementsByClassName("close")[0];
 let delegatesp = document.getElementById('letsgo');
 let dontdelegate = document.getElementById('getbacksp')
+let form = document.getElementById('form')
+
 if(delegate)
 {
 delegate.addEventListener('click', e => {
   let sp = document.getElementById('sp').value
   if(sp<50)
   {
-    modal.style.display = "block";
+    modal.style.display = "block"
   }
   else {
-    // Do delegation part here
+    form.submit()
   }
 })
 }
@@ -458,7 +460,7 @@ delegate.addEventListener('click', e => {
 
 if(delegatesp) {
 delegatesp.addEventListener('click', e => {
-  // Do delegation part here
+  form.submit();
 })
 }
 

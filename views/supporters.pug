@@ -21,15 +21,14 @@ block content
             button(type="button" id="letsgo" class="btn btn-secondary col-md-3 mr-1") Yes
             button(type="button" id="getbacksp" class="btn btn-success col-md-3 ml-1") No
         
-        
-
     .deleg Delegate Steem Power -
-    
-    div(class="input-group mb-3")
-      input(type="number" class="form-control modification" placeholder="Delegate Steem Power" id="sp" aria-label="Delegated Steem Power" aria-describedby="basic-addon2"
-      value="0")
-      div(class="input-group-append")
-        button(class="btn btn-outline-secondary btn-lg" type="button" id="delegate") Delegate
+    form(method="POST" action="/post/delegate" id="form")
+      div(class="input-group mb-3")
+        input(type="number" class="form-control modification" placeholder="Delegate Steem Power" id="sp"
+        name="sp" aria-label="Delegated Steem Power" aria-describedby="basic-addon2"
+        value="0")
+        div(class="input-group-append")
+          button(class="btn btn-outline-secondary btn-lg" type="button" id="delegate") Delegate
   
     .deleg.mb-3 Our Delegators:
 
