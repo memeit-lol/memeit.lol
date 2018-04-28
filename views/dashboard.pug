@@ -17,7 +17,7 @@ block content
           a(href=`/@${post.author}`): span @#{post.author}
         if logged
           div.postControls
-            button.vote(onclick=`window.location = '/post/vote/@${post.author}/${post.permlink}'`) Vote
-            button.comment(onclick=`window.location = '/post/comment/@${post.author}/${post.permlink}'`) Comment
+            button.vote(onclick=`window.location = '/post/vote/@${post.author}/${post.permlink}'`): i(class="fas fa-chevron-circle-up")
+            button.comment(onclick=`window.location = '/post/comment/@${post.author}/${post.permlink}'`): i(class="fas fa-pen-square")
 
   script(src='/js/showdown.min.js')
