@@ -9,7 +9,7 @@ let config = {
   },
   mongodb: '',
   endpoints: {
-    base: 'https://api.memeit.com/',
+    base: 'https://api.memeit.lol/',
     img: 'new',
     memes: 'memes'
   }

@@ -13,7 +13,6 @@ router.get('/', util.isAuthenticated, async (req, res, next) => {
   }).limit(10)
   const userMetadata = req.session.steemconnect.json_metadata ?
     JSON.parse(req.session.steemconnect.json_metadata) : {}
-  let payouts =  []
   posts = await Promise.all(posts.map(async function(post) {
     post.payout = await accinfo.payoutCalculator(post.author, post.permlink)
     return post
