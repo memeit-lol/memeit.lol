@@ -313,7 +313,6 @@ getAccountInfo = (username) => {
       let steemPower = steem.formatter.vestToSteem(vestingShares, totalVestingShares, totalVestingFundSteem)
       let delegatedSteemPower = steem.formatter.vestToSteem((receivedVestingShares.split(' ')[0]) + ' VESTS', totalVestingShares, totalVestingFundSteem)
       let outgoingSteemPower = steem.formatter.vestToSteem((receivedVestingShares.split(' ')[0] - delegatedVestingShares.split(' ')[0]) + ' VESTS', totalVestingShares, totalVestingFundSteem) - delegatedSteemPower
-
         // vote power calc
       let lastVoteTime = (new Date() - new Date(user.last_vote_time + 'Z')) / 1000
       let votePower = user.voting_power += (10000 * lastVoteTime / 432000)
@@ -436,3 +435,47 @@ window.addEventListener('scroll', function () {
     }
   }
 })
+
+let delegate = document.getElementById('delegate')
+let modal = document.getElementById('myModal');
+let span = document.getElementsByClassName("close")[0];
+let delegatesp = document.getElementById('letsgo');
+let dontdelegate = document.getElementById('getbacksp')
+if(delegate)
+{
+delegate.addEventListener('click', e => {
+  let sp = document.getElementById('sp').value
+  if(sp<50)
+  {
+    modal.style.display = "block";
+  }
+  else {
+    // Do delegation part here
+  }
+})
+}
+
+
+if(delegatesp) {
+delegatesp.addEventListener('click', e => {
+  // Do delegation part here
+})
+}
+
+if(dontdelegate) {
+dontdelegate.addEventListener('click', e=> {
+  modal.style.display = "none";
+})
+}
+
+if(span) {
+span.onclick = function() {
+    modal.style.display = "none";
+}
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}

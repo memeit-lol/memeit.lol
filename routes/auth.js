@@ -20,7 +20,9 @@ router.get('/', (req, res, next) => {
 
 router.get('/logout', (req, res) => {
   req.session.destroy()
-  res.redirect('/')
+  res.render('index', {
+    title: 'Memeit.lol'
+  })
 })
 
 module.exports = router

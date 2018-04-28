@@ -1,14 +1,23 @@
 let express = require('express')
 let util = require('../modules/util')
+let accinfo = require('../modules/accinfo')
 let router = express.Router()
 let db = require('../db')
 
 /* GET users listing. */
 router.get('/', util.isAuthenticated, async (req, res, next) => {
-  let posts = await db.post.find({hidden: false}).sort({time: -1}).limit(10)
-  const userMetadata = req.session.steemconnect.json_metadata
-    ? JSON.parse(req.session.steemconnect.json_metadata)
-    : {}
+  let posts = await db.post.find({
+    hidden: false
+  }).sort({
+    time: -1
+  }).limit(10)
+  const userMetadata = req.session.steemconnect.json_metadata ?
+    JSON.parse(req.session.steemconnect.json_metadata) : {}
+  let payouts =  []
+  posts = await Promise.all(posts.map(async function(post) {
+    post.payout = await accinfo.payoutCalculator(post.author, post.permlink)
+    return post
+  }));
   res.render('dashboard', {
     posts,
     name: req.session.steemconnect.name,
