@@ -2,7 +2,7 @@ extends layout
 
 block content
   include partials/nav3
-  
+
   main
     h1= "Support 🚀 Memeit.LOL"
     body
@@ -10,12 +10,30 @@ block content
     h2= ""
     p On Memeit.LOL, 12% of the rewards of every post are distributed among our supporters. 
     p To become gain benefits from this system, all you have to do is to delegate Steem Power to Memeit.LOL. The more Steem Power you delegate, the higher your chance to be rewarded. The Memeit.LOL bot uses the collected Steem Power to upvote submissions. Moderators control the bots upvotes based on their combined input on posts.
-    form(method="POST" action="/post/delegate")
-      label Delegate Steem Power:
-        input(name="sp", type="number" value="50")
-        button(type="submit" id="add") Delegate
-    h3 Delegators
+
+    div(id="myModal" class="modal")
+      div(class="modal-content")
+        span(class="close text-right") &times;
+        p.mb-2.text-center When delegating less than 50 SP the delegators will not be eligible to recieve beneficiary rewards and will not be able to moderate posts and gain beneficiary rewards for their consideration on posts.
+        p.text-center Are you sure you want to proceed delegation of SP less than 50?
+        center
+          span
+            button(type="button" id="letsgo" class="btn btn-secondary col-md-3 mr-1") Yes
+            button(type="button" id="getbacksp" class="btn btn-success col-md-3 ml-1") No
+        
+    .deleg Delegate Steem Power -
+    form(method="POST" action="/post/delegate" id="form")
+      div(class="input-group mb-3")
+        input(type="number" class="form-control modification" placeholder="Delegate Steem Power" id="sp"
+        name="sp" aria-label="Delegated Steem Power" aria-describedby="basic-addon2"
+        value="0")
+        div(class="input-group-append")
+          button(class="btn btn-outline-secondary btn-lg" type="button" id="delegate") Delegate
+  
+    .deleg.mb-3 Our Delegators:
+
     ul
       each supporter in delegators
         li
-          h4= supporter.delegator
+          h3
+            a(href=`/@${supporter.delegator}`) #{supporter.delegator}

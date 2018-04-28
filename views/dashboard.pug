@@ -2,7 +2,6 @@ extends layout
 
 block content
   include partials/nav3
-
   aside
     img(src=`${profileImage}` width="50px")
     h3 #{name}
@@ -11,13 +10,15 @@ block content
     h4 Latest Posts
     for post in posts
       div.item
-        a(href=`/@${post.author}/${post.permlink}`): img.item__image(src=`https://steemitimages.com/520x520/${post.img}`)
         div.item__author
-          a(href=`/@${post.author}/${post.permlink}`): h2 #{post.title}
+          a(href=`/@${post.author}/${post.permlink}`): h4 #{post.title}
           a(href=`/@${post.author}`): span @#{post.author}
+        a(href=`/@${post.author}/${post.permlink}`): img.item__image(src=`https://steemitimages.com/520x520/${post.img}`)
         if logged
           div.postControls
             button.vote(onclick=`window.location = '/post/vote/@${post.author}/${post.permlink}'`): i(class="fas fa-chevron-circle-up")
+            span.payout $ #{post.payout.potentialPayout}
+            span.memeply Memeply
             button.comment(onclick=`window.location = '/post/comment/@${post.author}/${post.permlink}'`): i(class="fas fa-pen-square")
 
   script(src='/js/showdown.min.js')
