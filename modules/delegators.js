@@ -73,7 +73,7 @@ async function getWeights (account, callback) {
     mods = mods.map(mod => mod.steem)
     var weights = {}
     mods.forEach(mod => {
-      weights = add(weights, mod, 100)
+      weights = add(weights, mod, (100 / mods.length).toFixed(0))
     })
     del = del.filter(function (d) { return d.delegator !== 'spotlight' })
     weights = add(weights, 'lol.pay', 1000)
@@ -88,13 +88,13 @@ async function getWeights (account, callback) {
     del.forEach(function (de) {
       var per = parseFloat(de.vesting_shares.replace(' VESTS', '')) / total
       if (chance >= past && chance <= per + past) {
-        weights = add(weights, de.delegator, 500)
+        weights = add(weights, de.delegator, 400)
       }
       if (chance2 >= past && chance2 <= per + past) {
-        weights = add(weights, de.delegator, 500)
+        weights = add(weights, de.delegator, 400)
       }
       if (chance3 >= past && chance3 <= per + past) {
-        weights = add(weights, de.delegator, 500)
+        weights = add(weights, de.delegator, 400)
       }
       past += per
     })
