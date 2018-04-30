@@ -394,3 +394,12 @@ button.comment {
   color: #918E8C;
   margin-right: 10px;
 }
+
+.postpaid {
+  max-width: 900px;
+  width: 100%;
+}
+
+.canvas-container {
+  margin: 0 auto;
+}
