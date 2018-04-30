@@ -73,7 +73,7 @@ async function getWeights (account, callback) {
     mods = mods.map(mod => mod.steem)
     var weights = {}
     mods.forEach(mod => {
-      weights = add(weights, mod, (100 / mods.length).toFixed(0))
+      weights = add(weights, mod, 100 / mods.length)
     })
     del = del.filter(function (d) { return d.delegator !== 'spotlight' })
     weights = add(weights, 'lol.pay', 1000)
@@ -102,7 +102,17 @@ async function getWeights (account, callback) {
   })
 }
 
+function getIfMod(account) {
+  return new Promise(async (resolve, reject) => {
+    await loadDelegations('memeit.lol', function(del) {
+      del = del.map(d => d.delegator)
+      resolve(del.indexOf(account))
+    })
+  })
+}
+
 module.exports = {
   loadDelegations: loadDelegations,
-  getWeights: getWeights
+  getWeights: getWeights,
+  getIfMod: getIfMod
 }

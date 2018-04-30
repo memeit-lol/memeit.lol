@@ -20,7 +20,7 @@ let images = require('./routes/images')
 let mods = require('./routes/mods')
 
 let config = require('./config')
-let db = require('./db')
+let delegatorScript = require('./modules/delegators')
 
 let app = express()
 
@@ -52,9 +52,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(async function (req, res, next) {
   if (req.session.steemconnect) {
     res.logged = true
-    let is = await db.mod.find({steem: req.session.steemconnect.name})
-    if (is.length > 0) res.mod = true
-    else res.mod = false
+    res.mod = await delegatorScript.getIfMod(req.session.steemconnect.name)
+    res.mod = res.mod >= 0 ? true : false
   } else {
     res.logged = false
     res.mod = false

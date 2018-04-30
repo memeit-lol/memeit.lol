@@ -24,6 +24,13 @@
   margin-right: 5px;
 }
 
+.modControls #Ignore {
+  background-color: #F2E54A;
+  color: #ffffff;
+  border: none;
+  margin-right: 5px;
+}
+
 .modControls #Decline {
   background-color: #F25270;
   color: #ffffff;
