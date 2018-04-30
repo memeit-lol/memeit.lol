@@ -43,7 +43,7 @@ router.get('/:feed/:num', async (req, res, next) => {
     posts,
     logged: res.logged,
     mod: res.mod,
-    num: req.params.num + 1,
+    num: parseInt(req.params.num) + 1,
     feed: req.params.feed,
     username: req.session.steemconnect.name
   })
@@ -51,7 +51,7 @@ router.get('/:feed/:num', async (req, res, next) => {
     posts,
     logged: res.logged,
     mod: res.mod,
-    num: req.params.num + 1,
+    num: parseInt(req.params.num) + 1,
     feed: req.params.feed
   })
 })
