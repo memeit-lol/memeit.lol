@@ -45,7 +45,6 @@ router.post('/vote', util.isMod, async function (req, res) {
         db.post.findOneAndUpdate({author, permlink}, {hidden, $inc: {score: vote}, $push: {votes: {mod: req.session.steemconnect.name, approved: vote}}}).exec()
         break;
     }
-    db.mod.findOneAndUpdate({steem: req.session.steemconnect.name}, {$inc: {votes: 1}}).exec()
     res.sendStatus(200)
   }
 })
