@@ -10,5 +10,6 @@ block content
         img(src=`https://steemitimages.com/520x520/${post.img}`)
         div(class="modControls")
           button(id="Accept" data-post=`${post.author}/${post.permlink}`) Accept
+          button(id="Ignore" data-post=`${post.author}/${post.permlink}`) Ignore
           button(id="Decline" data-post=`${post.author}/${post.permlink}`) Decline
   script(src="/js/mod.js")
