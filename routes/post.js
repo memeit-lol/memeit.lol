@@ -32,12 +32,6 @@ router.post('/create-post', util.isAuthenticated, (req, res) => {
     let otherTags = tags.slice(0, 4)
     let title = req.body.title
     let done = false
-    new db.post({
-      title,
-      author,
-      permlink,
-      img: req.body.image
-    }).save()
     delegator.getWeights('memeit.lol', function (data) {
       if (!done) {
         let ben = []
@@ -53,6 +47,12 @@ router.post('/create-post', util.isAuthenticated, (req, res) => {
             })
             console.log(err)
           } else {
+            new db.post({
+              title: response.title,
+              author: response.author,
+              permlink: response.permlink,
+              img: JSON.parse(response.json_metadata).image[0]
+            }).save()
             res.redirect(`/@${author}/${permlink}`)
           }
         })

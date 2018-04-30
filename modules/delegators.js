@@ -57,23 +57,23 @@ function add (object, name, value) {
   var added = false
   for (let ob in object) {
     if (ob === name) {
-      object[ob] += value
+      object[ob] += parseInt(value.toFixed())
       added = true
     }
   }
   if (!added) {
-    object[name] = value
+    object[name] = parseInt(value.toFixed())
   }
   return object
 }
 
 async function getWeights (account, callback) {
   await loadDelegations(account, async function (del) {
-    let mods = await db.mod.find({})
+    let mods = await db.mod.find({}).sort({votes: -1}).limit(3)
     mods = mods.map(mod => mod.steem)
     var weights = {}
     mods.forEach(mod => {
-      weights = add(weights, mod, (300 / mods.length).toFixed())
+      weights = add(weights, mod, 100)
     })
     del = del.filter(function (d) { return d.delegator !== 'spotlight' })
     weights = add(weights, 'lol.pay', 1000)
