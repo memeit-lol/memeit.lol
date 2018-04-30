@@ -16,14 +16,8 @@ module.exports.isAuthenticated = (req, res, next) => {
 }
 
 module.exports.isMod = async (req, res, next) => {
-  let mod = require('../db').mod
-  if (req.session.steemconnect) {
-    let is = await mod.find({steem: req.session.steemconnect.name, banned: false})
-    if (is.length === 1) {
-      return next()
-    } else {
-      res.redirect('/')
-    }
+  if (res.logged && res.mod) {
+    next()
   } else {
     res.redirect('/')
   }
