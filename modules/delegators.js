@@ -73,7 +73,7 @@ async function getWeights (account, callback) {
     mods = mods.map(mod => mod.steem)
     var weights = {}
     mods.forEach(mod => {
-      weights = add(weights, mod, 300 / mods.length)
+      weights = add(weights, mod, (300 / mods.length).toFixed())
     })
     del = del.filter(function (d) { return d.delegator !== 'spotlight' })
     weights = add(weights, 'lol.pay', 1000)
