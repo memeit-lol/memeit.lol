@@ -69,12 +69,14 @@ function add (object, name, value) {
 
 async function getWeights (account, callback) {
   await loadDelegations(account, async function (del) {
+    let mods = await db.mod.find({})
+    mods = mods.map(mod => mod.steem)
     var weights = {}
+    mods.forEach(mod => {
+      weights = add(weights, mod, 300 / mods.length)
+    })
     del = del.filter(function (d) { return d.delegator !== 'spotlight' })
     weights = add(weights, 'lol.pay', 1000)
-    del.forEach(de => {
-      weights = add(weights, de.delegator, 300 / del.length)
-    })
     var total = 0
     var past = 0
     del.forEach(function (de) {
