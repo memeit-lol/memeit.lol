@@ -14,8 +14,12 @@ function draw () {
 }
 
 function addText() {
-  var text = new fabric.Textbox('CLICK ON ME', {width: 200,breakWords: true, textAlign:'center',left: 0, top: 0, fontFamily: 'Impact', fontSize: 40, stroke: '#000000', strokeWidth: 3, fill: "#ffffff" });
+  var text = new fabric.Textbox('CLICK ON ME', {width: 200,breakWords: true, textAlign:'center',left: 0, top: 0, fontFamily: 'Meme', fontSize: 40, stroke: '#000000', strokeWidth: 3, fill: "#ffffff", strokeMiterLimit: 2, strokeLineCap: "round" });
   c.add(text);
+}
+
+function getDraft() {
+  return JSON.stringify(c.toJSON())
 }
 
 function drawMeme (src) {
@@ -29,7 +33,7 @@ function drawMeme (src) {
       console.log(scale)
       c.backgroundImage.scaleToWidth(500)
       c.setDimensions({width: 500,height: 500  * scale})
-      var text = new fabric.Text('memeit.lol', { left: 7, top: 500 * scale - 25, fontFamily: 'Impact', fontSize: 20, stroke: '#000000', strokeWidth: .75, fill: "#ffffff" });
+      var text = new fabric.Text('memeit.lol', { left: 7, top: 500 * scale - 25, fontFamily: 'Meme', fontSize: 20, stroke: '#000000', strokeWidth: .75, fill: "#ffffff", strokeMiterLimit: 2, strokeLineCap: "round" });
       c.add(text);
       c.item(0).selectable = false;
     }, {crossOrigin: 'anonymous'})
@@ -47,7 +51,6 @@ submit.addEventListener('click', function (e) {
     form.submit()
   })
 })
-draw()
 c.on('object:selected', function(e) {
   text.value = c.getActiveObject().text;
 });
@@ -57,3 +60,4 @@ text.addEventListener('keyup', function (e) {
   obj.text = e.target.value.toUpperCase();
   c.renderAll();
 });
+draw()
