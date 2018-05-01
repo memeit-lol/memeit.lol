@@ -46,7 +46,7 @@ router.post('/create-post', util.isAuthenticated, (req, res) => {
             })
             console.log(err)
           } else {
-            new db.post({
+            new db.Post({
               title,
               author,
               permlink,
@@ -65,7 +65,8 @@ router.get('/vote/@:author/:permlink', util.isAuthenticated, (req, res) => {
   let author = req.params.author
   let permlink = req.params.permlink
   res.render('vote', {
-    author, permlink,
+    author,
+    permlink,
     username: req.session.steemconnect.name,
     logged: res.logged,
     mod: res.mod
