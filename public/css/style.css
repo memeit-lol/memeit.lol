@@ -387,6 +387,16 @@ button.comment {
   margin-left: 10px;
 }
 
+.score {
+  position: absolute;
+  top: 20%;
+  left: 39%;
+  border-radius: 8%;
+  color: #5C4E5D;
+  padding: 10px;
+  background: linear-gradient(to right, #a1c4fd 0%, #c2e9fb 51%, #a1c4fd 100%);
+}
+
 .memeply {
   position: absolute;
   top: 35%;
