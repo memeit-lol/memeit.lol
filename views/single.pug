@@ -13,6 +13,8 @@ block content
     if logged
       div.postControls
         button.vote(onclick=`window.location = '/post/vote/@${i.author}/${i.permlink}'`): i(class="fas fa-chevron-circle-up")
+        span.payout $ #{i.payout.potentialPayout}
+        span.memeply Memeply  
         button.comment(onclick=`window.location = '/post/comment/@${i.author}/${i.permlink}'`): i(class="fas fa-pen-square")
     div.comments
       for comment in i.comments

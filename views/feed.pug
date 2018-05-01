@@ -2,17 +2,20 @@ extends layout
 
 block content
   include partials/nav3
-
+  
   main
     for post in posts
       div.item
+        a(href=`/@${post.author}/${post.permlink}`): h4 #{post.title}
+        a(href=`/@${post.author}`): span @#{post.author}
         a(href=`/@${post.author}/${post.permlink}`): img.item__image(src=`https://steemitimages.com/520x520/${post.img}`)
         div.item__author
-          a(href=`/@${post.author}/${post.permlink}`): h2 #{post.title}
-          a(href=`/@${post.author}`): span @#{post.author}
           if logged
             div.postControls
               button.vote(onclick=`window.location = '/post/vote/@${post.author}/${post.permlink}'`): i(class="fas fa-chevron-circle-up")
+              span.payout $ #{post.payout.potentialPayout}
+              span.score Score [#{post.score}]
+              span.memeply Memeply    
               button.comment(onclick=`window.location = '/post/comment/@${post.author}/${post.permlink}'`): i(class="fas fa-pen-square")
     if posts.length === 10
       a(href=`/feed/${feed}/${num}`) Next

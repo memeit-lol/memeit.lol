@@ -1,5 +1,6 @@
 let express = require('express')
 let util = require('../modules/util')
+let accinfo = require('../modules/accinfo')
 let router = express.Router()
 let db = require('../db')
 
@@ -13,6 +14,10 @@ router.get('/:feed', async (req, res, next) => {
   } else {
     posts = []
   }
+  posts = await Promise.all(posts.map(async function(post) {
+    post.payout = await accinfo.payoutCalculator(post.author, post.permlink)
+    return post
+  }));
   if (res.logged) res.render('feed', {
     posts,
     logged: res.logged,

@@ -78,7 +78,8 @@ router.get('/@:username/:permlink', (req, res, next) => {
   }).then(async i => {
     i.comments = await info.getComments(i.author, i.permlink)
     return i
-  }).then(i => {
+  }).then(async i => {
+    i.payout = await info.payoutCalculator(i.author, i.permlink);
     if (res.logged) res.render('single', {
       i,
       logged: res.logged,
