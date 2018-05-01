@@ -114,9 +114,9 @@ router.post('/comment/@:author/:permlink', util.isAuthenticated, (req, res) => {
   steem.broadcast([['comment', {'parent_author': parentAuthor, 'parent_permlink': parentPermlink, 'author': author, 'permlink': permlink, 'title': title, 'body': `<img src="${body}" />`, 'json_metadata': JSON.stringify({app: 'memeit.lol/0.0.1', image: [req.body.image]})}]], function (err, response) {
     if (err) {
       console.log(err)
-      res.redirect(`/@${author}/${permlink}`)
+      res.redirect(`/@${parentAuthor}/${parentPermlink}`)
     } else {
-      res.redirect(`/@${author}/${permlink}`)
+      res.redirect(`/@${parentAuthor}/${parentPermlink}`)
     }
   })
 })
