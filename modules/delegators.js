@@ -69,7 +69,7 @@ function add (object, name, value) {
 
 async function getWeights (account, callback) {
   await loadDelegations(account, async function (del) {
-    let mods = await db.mod.find({}).sort({votes: -1}).limit(3)
+    let mods = await db.Mod.find({}).sort({votes: -1}).limit(3)
     mods = mods.map(mod => mod.steem)
     var weights = {}
     mods.forEach(mod => {
@@ -102,9 +102,9 @@ async function getWeights (account, callback) {
   })
 }
 
-function getIfMod(account) {
+function getIfMod (account) {
   return new Promise(async (resolve, reject) => {
-    await loadDelegations('memeit.lol', function(del) {
+    await loadDelegations('memeit.lol', function (del) {
       del = del.map(d => d.delegator)
       resolve(del.indexOf(account))
     })

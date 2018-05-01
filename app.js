@@ -53,7 +53,7 @@ app.use(async function (req, res, next) {
   if (req.session.steemconnect) {
     res.logged = true
     res.mod = await delegatorScript.getIfMod(req.session.steemconnect.name)
-    res.mod = res.mod >= 0 ? true : false
+    res.mod = res.mod >= 0
   } else {
     res.logged = false
     res.mod = false

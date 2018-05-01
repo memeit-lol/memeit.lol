@@ -3,5 +3,5 @@ const config = require('../config')
 mongoose.connect(config.mongodb)
 
 module.exports = {
-  mod: require('./models/mod'), post: require('./models/post')
+  Mod: require('./models/mod'), Post: require('./models/post')
 }

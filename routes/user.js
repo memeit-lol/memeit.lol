@@ -6,17 +6,17 @@ let db = require('../db')
 
 /* GET users listing. */
 router.get('/', util.isAuthenticated, async (req, res, next) => {
-  let posts = await db.post.find({
+  let posts = await db.Post.find({
     hidden: false
   }).sort({
     time: -1
   }).limit(10)
-  const userMetadata = req.session.steemconnect.json_metadata ?
-    JSON.parse(req.session.steemconnect.json_metadata) : {}
-  posts = await Promise.all(posts.map(async function(post) {
+  const userMetadata = req.session.steemconnect.json_metadata
+    ? JSON.parse(req.session.steemconnect.json_metadata) : {}
+  posts = await Promise.all(posts.map(async function (post) {
     post.payout = await accinfo.payoutCalculator(post.author, post.permlink)
     return post
-  }));
+  }))
   res.render('dashboard', {
     posts,
     name: req.session.steemconnect.name,

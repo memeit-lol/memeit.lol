@@ -4,8 +4,8 @@ let router = express.Router()
 let db = require('../db')
 
 router.get('/', util.isMod, async (req, res, next) => {
-  let posts = await db.post.find({time: {$gt: Date.now() - 86400000}, votes: { $not: {$elemMatch: {mod: req.session.steemconnect.name}}}, author: {$ne: req.session.steemconnect.name}})
-  posts = posts.sort(function(a, b){return 0.5 - Math.random()})
+  let posts = await db.Post.find({time: {$gt: Date.now() - 86400000}, votes: {$not: {$elemMatch: {mod: req.session.steemconnect.name}}}, author: {$ne: req.session.steemconnect.name}})
+  posts = posts.sort(function (a, b) { return 0.5 - Math.random() })
   if (posts.length > 0) {
     res.render('mod', {
       posts,
@@ -30,24 +30,24 @@ router.post('/vote', util.isMod, async function (req, res) {
   } else {
     let permlink = post.split('/')[1]
     let vote = req.body.value
-    let Post = await db.post.findOne({author, permlink})
-    let hidden;
-    if(Post.score === undefined) {
-      hidden = vote > 0 ? false: true
+    let Post = await db.Post.findOne({author, permlink})
+    let hidden
+    if (Post.score === undefined) {
+      hidden = !(vote > 0)
     } else {
-      hidden = Post.score + vote > 0 ? false: true
+      hidden = !(Post.score + vote > 0)
     }
-    switch(vote) {
+    switch (vote) {
       case 0:
-        db.post.findOneAndUpdate({author, permlink}, {hidden, $push: {votes: {mod: req.session.steemconnect.name, approved: vote}}}).exec()
-        break;
+        db.Post.findOneAndUpdate({author, permlink}, {hidden, $push: {votes: {mod: req.session.steemconnect.name, approved: vote}}}).exec()
+        break
       default:
-        db.post.findOneAndUpdate({author, permlink}, {hidden, $inc: {score: vote}, $push: {votes: {mod: req.session.steemconnect.name, approved: vote}}}).exec()
-        break;
+        db.Post.findOneAndUpdate({author, permlink}, {hidden, $inc: {score: vote}, $push: {votes: {mod: req.session.steemconnect.name, approved: vote}}}).exec()
+        break
     }
-    let mods = await db.mod.find({steem: req.session.steemconnect.name})
-    if(mods.length > 0) db.mod.findOneAndUpdate({steem: req.session.steemconnect.name}, {$inc: {votes: 1}}).exec()
-    else new db.mod({steem: req.session.steemconnect.name, votes: 0}).save()
+    let mods = await db.Mod.find({steem: req.session.steemconnect.name})
+    if (mods.length > 0) db.Mod.findOneAndUpdate({steem: req.session.steemconnect.name}, {$inc: {votes: 1}}).exec()
+    else new db.Mod({steem: req.session.steemconnect.name, votes: 0}).save()
     res.sendStatus(200)
   }
 })
