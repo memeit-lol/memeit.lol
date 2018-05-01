@@ -387,6 +387,31 @@ button.comment {
   margin-left: 10px;
 }
 
+.score {
+  position: absolute;
+  font-size: 21px;
+  top: 23%;
+  left: 45%;
+  color: #5C4E5D;
+  border-radius: 8%;
+  background: linear-gradient(to right, #a1c4fd 0%, #c2e9fb 51%, #a1c4fd 100%);
+  width: 40px;
+  text-align: center;
+  height: 34px;
+  z-index: 5;
+}
+
+.memescore {
+  position: absolute;
+  top: 38%;
+  left: 38%;
+  border-radius: 8%;
+  color: #5C4E5D;
+  padding: 5px;
+  padding-top: 22px;
+}
+
+
 .memeply {
   position: absolute;
   top: 35%;
@@ -402,4 +427,9 @@ button.comment {
 
 .canvas-container {
   margin: 0 auto;
+}
+
+.suplink {
+  text-decoration-style: none;
+  color: white;
 }

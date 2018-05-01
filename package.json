@@ -6,6 +6,7 @@
     "production": "NODE_ENV=production nodemon",
     "start": "node ./bin/www",
     "standard": "standard",
+    "fix": "standard --fix",
     "precommit": "npm run standard"
   },
   "dependencies": {

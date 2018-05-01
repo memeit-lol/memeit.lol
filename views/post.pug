@@ -10,7 +10,8 @@ block content
       div(class="collapse show" id="collapseExample")
         div(class="card card-body" style="display: flex; flex-wrap: wrap; flex-direction: row; justify-content: space-evenly;")
           each image in images
-            img(src=`https://memeit.lol/photos/memes/thumbnail/${image}` width="70" height="70" onclick=`window.change('https://memeit.lol/photos/memes/thumbnail/${image}');$('html, body').animate({scrollTop: $("#t").offset().top}, 500);`)
+            img(src=`https://memeit.lol/photos/memes/thumbnail/${image}` width="100" height="100"
+            onclick=`window.change('https://memeit.lol/photos/memes/thumbnail/${image}');$('html, body').animate({scrollTop: $("#t").offset().top}, 500);`)
       label(id="t") 2) Add Title
       input(type="text" name="title")
       canvas(id="canvas")

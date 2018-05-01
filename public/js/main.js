@@ -443,6 +443,15 @@ let delegatesp = document.getElementById('letsgo');
 let dontdelegate = document.getElementById('getbacksp')
 let form = document.getElementById('form')
 
+let notmod = document.getElementById('notmod');
+
+if(notmod)
+{
+  notmod.addEventListener('click', e => {
+    modal.style.display = "block"
+  })
+}
+
 if(delegate)
 {
 delegate.addEventListener('click', e => {
