@@ -24,11 +24,11 @@ block content
             div.postControls
               button.vote(onclick=`window.location = '/post/vote/@${post.author}/${post.permlink}'`): i(class="fas fa-chevron-circle-up")
               span.payout $ #{post.payout.potentialPayout}
-              //- if mod
+              if mod
                 a(href='/mods')
                   span.score #{post.score}
-                else
-              span.score#notmod #{post.score}
+              else
+                span.score#notmod #{post.score}
               span.memescore MemeScore
               span.memeply Memeply    
               button.comment(onclick=`window.location = '/post/comment/@${post.author}/${post.permlink}'`): i(class="fas fa-pen-square")
