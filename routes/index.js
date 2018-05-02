@@ -15,7 +15,12 @@ router.get('/', (req, res, next) => {
 
 router.get('/@:username?', (req, res, next) => {
   info.getAccountInfo(req.params.username).then(async d => {
-    let posts = await db.Post.find({author: req.params.username}).sort({time: -1}).limit(10)
+    let posts = await db.Post.find({author: req.params.username, hidden: false}).sort({time: -1}).limit(10)
+    posts = await Promise.all(posts.map(async function (post) {
+      post.payout = await info.payoutCalculator(post.author, post.permlink)
+      // console.log(post.payout);
+      return post
+    }))
     if (res.logged) {
       res.render('profile', {
         d,
