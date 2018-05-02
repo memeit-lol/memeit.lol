@@ -11,6 +11,17 @@ block content
     for post in posts
       div.item
         div.item__author
+          div(id="myModal" class="modal")
+            div(class="modal-content")
+              span(class="close text-right") &times;
+              p.text-center MemeScore is the sumation of  all community voting on this image.
+              p.text-center Want to vote on memes and make a profit? 
+              p.text-center Join the Memeit Mod Team instantly by delegating 50 SP or more!
+              center
+                span
+                  button(type="button" class="btn btn-success col-md-3 mr-1") 
+                    a(href="/supporters" class="suplink") Join Now!
+          
           a(href=`/@${post.author}/${post.permlink}`): h4 #{post.title}
           a(href=`/@${post.author}`): span @#{post.author}
         a(href=`/@${post.author}/${post.permlink}`): img.item__image(src=`https://steemitimages.com/520x520/${post.img}`)
@@ -18,6 +29,12 @@ block content
           div.postControls
             button.vote(onclick=`window.location = '/post/vote/@${post.author}/${post.permlink}'`): i(class="fas fa-chevron-circle-up")
             span.payout $ #{post.payout.potentialPayout}
+            if mod
+              a(href='/mods')
+                span.score #{post.score}
+            else
+              span.score#notmod #{post.score}
+            span.memescore MemeScore  
             span.memeply Memeply
             button.comment(onclick=`window.location = '/post/comment/@${post.author}/${post.permlink}'`): i(class="fas fa-pen-square")
 

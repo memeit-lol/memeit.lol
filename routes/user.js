@@ -15,8 +15,10 @@ router.get('/', util.isAuthenticated, async (req, res, next) => {
     ? JSON.parse(req.session.steemconnect.json_metadata) : {}
   posts = await Promise.all(posts.map(async function (post) {
     post.payout = await accinfo.payoutCalculator(post.author, post.permlink)
+    // console.log(post.payout);
     return post
   }))
+  // console.log(posts);
   res.render('dashboard', {
     posts,
     name: req.session.steemconnect.name,
