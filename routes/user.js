@@ -7,8 +7,7 @@ let db = require('../db')
 /* GET users listing. */
 router.get('/', util.isAuthenticated, async (req, res, next) => {
   let posts = await db.Post.find({
-    hidden: false,
-    voted: true
+    hidden: false
   }).sort({
     time: -1
   }).limit(10)
