@@ -10,8 +10,15 @@
 .modPost {
   margin-bottom: 30px;
   padding: 30px;
-  background-color: #F2F2F2;
+  background-color: #FFFFFF;
+  transition: 0.3s;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
+
+.modPost:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
 
 .modControls {
   display: flex;
@@ -126,7 +133,7 @@ a {
 
 main, aside {
   padding: 30px 15px;
-  max-width: 520px;
+  max-width: 600px;
   margin: 0 auto;
 }
 
@@ -268,7 +275,13 @@ button.comment {
 .item {
   margin-bottom: 30px;
   padding: 30px;
-  background-color: #F2F2F2;
+  background-color: #FFFFFF;
+  transition: 0.3s;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.item:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 .fab {
@@ -404,7 +417,7 @@ button.comment {
 .memescore {
   position: absolute;
   top: 38%;
-  left: 38%;
+  left: 39%;
   border-radius: 8%;
   color: #5C4E5D;
   padding: 5px;
