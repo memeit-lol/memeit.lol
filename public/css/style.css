@@ -150,6 +150,7 @@ main, aside {
 
 img {
   max-width: 100%;
+  display: block;
 }
 
 .comment {
