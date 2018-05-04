@@ -23,7 +23,8 @@ block content
                       a(href="/supporters" class="suplink") Join Now!
             div.postControls
               button.vote(onclick=`window.location = '/post/vote/@${post.author}/${post.permlink}'`): i(class="fas fa-chevron-circle-up")
-              span.payout $ #{post.payout.potentialPayout}
+              unless post.payout === undefined
+                span.payout $ #{post.payout.potentialPayout}
               if mod
                 a(href='/mods')
                   span.score #{post.score}
