@@ -79,8 +79,6 @@ function getUserFeed (username) {
     limit: 20
   }
   steem.api.getDiscussionsByFeed(query, (err, result) => {
-    console.log(result)
-
     var filteredResults = new Array()
     for (i = 0; i < result.length; i++) {
       let app = JSON.parse(result[i].json_metadata).app
@@ -88,7 +86,6 @@ function getUserFeed (username) {
         filteredResults.push(result[i])
       }
     }
-    console.log(filteredResults)
     displayContent(filteredResults)
   })
 }
@@ -215,7 +212,6 @@ function generateProfileImage (author) {
 
 function appendSinglePost (post, users) {
   let author = users[post.author]
-  console.log(author)
   let html = converter.makeHtml(post.body)
   let profileImage = generateProfileImage(author)
 
@@ -417,7 +413,6 @@ $('main').on('click', '.send-comment', (e) => {
       parentTitle: $comment.data('parent-title')
     }
   }, (response) => {
-    console.log(response)
     $(`<p>${response.msg}</p>`).insertAfter($comment)
   })
 })

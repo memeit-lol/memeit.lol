@@ -113,7 +113,6 @@ function parsePayoutAmount (amount) {
 }
 
 const calculatePayout = post => {
-  console.log(post);
   const payoutDetails = {}
   const {
     active_votes,
