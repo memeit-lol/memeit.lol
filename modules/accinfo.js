@@ -90,14 +90,16 @@ async function getPostAndComments (username, permlink) {
   return new Promise((resolve, reject) => {
     steem.api.getContent(username, permlink, function (err, resp) {
       if (err) console.log(err)
-      console.log(resp)
+      var json = JSON.parse(resp.json_metadata)
       let i = {
         author: resp.author,
         category: resp.category,
         permlink: resp.permlink,
         title: resp.title,
+        image: json.image[0],
+        url: 'https://memeit.lol/@' + resp.author + '/' + resp.permlink,
         body: marked(resp.body),
-        tags: JSON.parse(resp.json_metadata).tags.map(t => {
+        tags: json.tags.map(t => {
           if (t !== '') return `<span>${t}</span>`
         })
       }
@@ -111,7 +113,6 @@ function parsePayoutAmount (amount) {
 }
 
 const calculatePayout = post => {
-  console.log(post);
   const payoutDetails = {}
   const {
     active_votes,

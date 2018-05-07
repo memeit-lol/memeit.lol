@@ -30,7 +30,6 @@ function drawMeme (src) {
     c.setWidth(image.width)
     c.setBackgroundImage(src, function() {
       var scale = image.height / image.width
-      console.log(scale)
       c.backgroundImage.scaleToWidth(500)
       c.setDimensions({width: 500,height: 500  * scale})
       var text = new fabric.Text('memeit.lol', { left: 7, top: 500 * scale - 25, fontFamily: 'Meme', fontSize: 20, stroke: '#000000', strokeWidth: .75, fill: "#ffffff", strokeMiterLimit: 2, strokeLineCap: "round" });

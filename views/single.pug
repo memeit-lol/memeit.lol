@@ -1,5 +1,14 @@
 extends layout
 
+block customMeta
+  meta(property="og:image" content=i.image)
+  meta(property="og:url" content=i.url)
+  meta(property="og:title" content=i.title + " by " + i.author)
+  meta(property="og:type" content="website")
+  meta(property="twitter:image" content=i.image)
+  meta(property="twitter:card" content='summary_large_image')
+  meta(property="twitter:title" content=i.title)
+
 block content
   include partials/nav3
 
