@@ -8,7 +8,10 @@ block content
       img(src=d.image width='100px' class='author-img')
       span.username @#{d.name} [#{d.rep}]      
       h5 Followers: #{d.followerCount} | Following: #{d.followingCount}
-      h5 Steem Power: #{d.sp} (-#{d.s})
+      if d.s === 0
+        h5 Steem Power: #{d.sp}
+      else
+        h5 Steem Power: #{d.sp} (#{d.s})
       h5 Voting Power: #{d.vp}%
     br
     if posts.length > 0

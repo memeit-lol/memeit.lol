@@ -29,6 +29,7 @@ let getAccountInfo = (username) => {
       let lastVoteTime = (new Date() - new Date(user.last_vote_time + 'Z')) / 1000
       let votePower = user.voting_power += (10000 * lastVoteTime / 432000)
       votePower = Math.min(votePower / 100, 100).toFixed(2)
+      let delegatedS = parseInt(delegatedSteemPower + outgoingSteemPower)
       let data = {
         name: user.name,
         image: jsonData.profile_image ? 'https://steemitimages.com/512x512/' + jsonData.profile_image : '',
@@ -37,7 +38,7 @@ let getAccountInfo = (username) => {
         sp: parseInt(steemPower).toLocaleString(),
         delegatedSpIn: parseInt(delegatedSteemPower).toLocaleString(),
         delegatedSpOut: parseInt(-outgoingSteemPower).toLocaleString(),
-        s: parseInt(delegatedSteemPower + outgoingSteemPower),
+        s: delegatedS > 0 ? '+' + delegatedS : delegatedS,
         vp: votePower,
         steem: user.balance.substring(0, user.balance.length - 5),
         sbd: user.sbd_balance.substring(0, user.sbd_balance.length - 3),
