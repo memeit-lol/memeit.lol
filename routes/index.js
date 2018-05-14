@@ -47,7 +47,13 @@ router.get('/faq', (req, res, next) => {
 })
 
 router.get('/supporters', (req, res, next) => {
-  delegatorsScript.loadDelegations('memeit.lol', function (delegators) {
+  delegatorsScript.loadDelegations('memeit.lol', async function (delegators) {
+    delegators = await Promise.all(await delegators.map(async function (delegator) {
+      delegator.img = await info.getImg(delegator.delegator)
+      delegator.sp = (parseFloat(delegator.vesting_shares.replace(' VESTS', '')) * 0.00049126606556236).toFixed()
+      return delegator
+    }))
+    console.log(delegators)
     res.render('supporters', {
       delegators,
       logged: res.logged,

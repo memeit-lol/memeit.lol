@@ -7,6 +7,22 @@
   src: url(/impact.ttf);
 }
 
+.editor_wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.image_wrapper {
+  overflow-y: hidden;
+  overflow-x: scroll;
+  display: flex;
+}
+
+.image_wrapper img {
+  height: 100px;
+  min-width: 100px;
+}
+
 .modPost {
   margin-bottom: 30px;
   padding: 30px;
@@ -335,6 +351,44 @@ button.comment {
   .fab .fa {
     transform: translate(-50%, -50%);
   }
+}
+
+.supporter {
+  margin-bottom: 30px;
+  padding: 30px;
+  background-color: #FFFFFF;
+  transition: 0.3s;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  display: flex;
+}
+
+.supporter:nth-of-type(1) {
+  box-shadow: 0 4px 8px 0 rgba(255,215,0,0.5);
+}
+
+.supporter:nth-of-type(2) {
+  box-shadow: 0 4px 8px 0 rgba(109,109,109,0.5);
+}
+
+.supporter:nth-of-type(3) {
+  box-shadow: 0 4px 8px 0 rgba(243,135,1,0.5);
+}
+
+.supporter div {
+  flex: 1;
+}
+
+.supporter div:last-of-type {
+  border-left: 1px solid #eeeeee;
+  margin: auto 0;
+}
+
+.supporter div:last-of-type h3, .supporter div:last-of-type h5 {
+  text-align: right;
+}
+
+.supporter:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 .author-img {

@@ -45,7 +45,7 @@ form.onsubmit = function(e) {
 submit.addEventListener('click', function (e) {
   e.preventDefault()
   submit.disabled = true
-  $.post('https://api.memeit.lol/new', {image: c.toDataURL()}, function (data) {
+  $.post('https://api.memeit.lol/v1/new', {image: c.toDataURL()}, function (data) {
     image.value = data.filename
     form.submit()
   })

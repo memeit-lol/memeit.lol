@@ -8,12 +8,17 @@ let axios = require('axios')
 let db = require('../db')
 
 router.get('/', util.isAuthenticated, (req, res, next) => {
-  axios.default.get(config.endpoints.base + config.endpoints.memes).then(images => {
+  let images = axios.default.get(config.endpoints.base + config.endpoints.memes).then(images => {
     return images.data.images
-  }).then(images => {
+  })
+  let stickers = axios.default.get(config.endpoints.base + config.endpoints.stickers).then(images => {
+    return images.data.images
+  })
+  Promise.all([images, stickers]).then(returns => {
     res.render('post', {
       name: req.session.steemconnect.name,
-      images,
+      images: returns[0],
+      stickers: returns[1],
       logged: res.logged,
       mod: res.mod,
       username: req.session.steemconnect.name
@@ -22,42 +27,38 @@ router.get('/', util.isAuthenticated, (req, res, next) => {
 })
 
 router.post('/create-post', util.isAuthenticated, (req, res) => {
-  axios.default.get(config.endpoints.base + config.endpoints.memes).then(images => {
-    return images.data.images
-  }).then(images => {
-    let author = req.session.steemconnect.name
-    let permlink = util.urlString()
-    var tags = req.body.tags.split(',').map(item => item.trim())
-    let primaryTag = 'memeitlol'
-    let otherTags = tags.slice(0, 4)
-    let title = req.body.title
-    let done = false
-    delegator.getWeights('memeit.lol', function (data) {
-      if (!done) {
-        let ben = []
-        for (let key in data) {
-          ben.push({'account': key, 'weight': data[key]})
-        }
-        steem.broadcast([['comment', {'parent_author': '', 'parent_permlink': primaryTag, 'author': author, 'permlink': permlink, 'title': title, 'body': `<img src="${req.body.image}" />`, 'json_metadata': JSON.stringify({app: 'memeit.lol/0.0.1', tags: [primaryTag, ...otherTags], image: [req.body.image]})}], ['comment_options', {'author': author, 'permlink': permlink, 'max_accepted_payout': '1000000.000 SBD', 'percent_steem_dollars': 10000, 'allow_votes': true, 'allow_curation_rewards': true, 'extensions': [[0, {'beneficiaries': ben}]]}]], function (err, response) {
-          if (err) {
-            res.render('error', {
-              message: 'Error: Please try again later',
-              username: req.session.steemconnect.name
-            })
-            console.log(err)
-          } else {
-            new db.Post({
-              title,
-              author,
-              permlink,
-              img: req.body.image
-            }).save()
-            res.redirect(`/@${author}/${permlink}`)
-          }
-        })
-        done = true
+  let author = req.session.steemconnect.name
+  let permlink = util.urlString()
+  var tags = req.body.tags.split(',').map(item => item.trim())
+  let primaryTag = 'memeitlol'
+  let otherTags = tags.slice(0, 4)
+  let title = req.body.title
+  let done = false
+  delegator.getWeights('memeit.lol', function (data) {
+    if (!done) {
+      let ben = []
+      for (let key in data) {
+        ben.push({'account': key, 'weight': data[key]})
       }
-    })
+      steem.broadcast([['comment', {'parent_author': '', 'parent_permlink': primaryTag, 'author': author, 'permlink': permlink, 'title': title, 'body': `<img src="${req.body.image}" />`, 'json_metadata': JSON.stringify({app: 'memeit.lol/0.0.1', tags: [primaryTag, ...otherTags], image: [req.body.image]})}], ['comment_options', {'author': author, 'permlink': permlink, 'max_accepted_payout': '1000000.000 SBD', 'percent_steem_dollars': 10000, 'allow_votes': true, 'allow_curation_rewards': true, 'extensions': [[0, {'beneficiaries': ben}]]}]], function (err, response) {
+        if (err) {
+          res.render('error', {
+            message: 'Error: Please try again later',
+            username: req.session.steemconnect.name
+          })
+          console.log(err)
+        } else {
+          new db.Post({
+            title,
+            author,
+            permlink,
+            img: req.body.image
+          }).save()
+          res.redirect(`/@${author}/${permlink}`)
+        }
+      })
+      done = true
+    }
   })
 })
 
