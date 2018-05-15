@@ -28,7 +28,7 @@ var Meme = function () {
   }
 
   self.addText = function (text = "DOUBLE CLICK ON ME", x = 0, y = 0) {
-    var element = new fabric.Textbox(text, { width: self.width, height: 50, breakWords: true, textAlign:'center',left: x, top: y, fontFamily: 'Impact', fontSize: 40, stroke: '#000000', strokeWidth: 3, fill: "#ffffff", strokeMiterLimit: 2, strokeLineCap: "round" })
+    var element = new fabric.Textbox(text, { width: self.width, height: 50, breakWords: true, textAlign:'center',left: x, top: y, fontFamily: 'Meme', fontSize: 40, stroke: '#000000', strokeWidth: 3, fill: "#ffffff", strokeMiterLimit: 2, strokeLineCap: "round" })
     self.c.add(element)
     self.c.setActiveObject(element)
   }
@@ -43,7 +43,7 @@ var Meme = function () {
         var scale = i.height / i.width
         self.c.backgroundImage.scaleToWidth(self.width)
         self.c.setDimensions({width: self.width, height: self.width  * scale})
-        var text = new fabric.Text('memeit.lol', { left: 7, top: self.width * scale - 25, fontFamily: 'Impact', fontSize: 20, stroke: '#000000', strokeWidth: .75, fill: "#ffffff", strokeMiterLimit: 2, strokeLineCap: "round" });
+        var text = new fabric.Text('memeit.lol', { left: 7, top: self.width * scale - 25, fontFamily: 'Meme', fontSize: 20, stroke: '#000000', strokeWidth: .75, fill: "#ffffff", strokeMiterLimit: 2, strokeLineCap: "round" });
         text.selectable = false
         self.c.add(text)
         self.defaultTextAreas()
