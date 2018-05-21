@@ -64,12 +64,14 @@ async function getImg (username) {
     steem.api.getAccounts([username], (err, re) => {
       if (err) console.log(err)
       let img = 'https://steemitimages.com/128x128/img/default-user.jpg'
-      if (JSON.parse(re[0].json_metadata)) {
-        if (JSON.parse(re[0].json_metadata).profile) {
-          try {
-            img = JSON.parse(re[0].json_metadata).profile.profile_image
-          } catch (er) {
-            console.log(er)
+      if(re[0].json_metadata){
+        if (JSON.parse(re[0].json_metadata)) {
+          if (JSON.parse(re[0].json_metadata).profile) {
+            try {
+              img = JSON.parse(re[0].json_metadata).profile.profile_image
+            } catch (er) {
+              console.log(er)
+            }
           }
         }
       }
