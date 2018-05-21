@@ -62,7 +62,6 @@ let getAccountInfo = (username) => {
 async function getImg (username) {
   return new Promise((resolve, reject) => {
     steem.api.getAccounts([username], (err, re) => {
-      console.log("re="+JSON.stringify(re));
       if (err) console.log(err)
       let img = 'https://steemitimages.com/128x128/img/default-user.jpg'
       if(re[0].json_metadata){
