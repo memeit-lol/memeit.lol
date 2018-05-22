@@ -34,6 +34,22 @@ router.post('/create-post', util.isAuthenticated, (req, res) => {
   let otherTags = tags.slice(0, 4)
   let title = req.body.title
   let done = false
+  let objects = null;
+  let containsCustomObjects=false
+  if(req.body.objects){
+    objects=JSON.parse(req.body.objects)
+  };
+  if(objects){
+    if(objects.stickers){
+        containsCustomObjects=true;
+    }
+  }
+  if(!containsCustomObjects){
+    return res.render('error', {
+        message: 'Error: Please add at least one sticker',
+        username: req.session.steemconnect.name
+    });
+  }
   delegator.getWeights('memeit.lol', function (data) {
     if (!done) {
       let ben = []
