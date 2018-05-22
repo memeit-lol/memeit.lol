@@ -86,11 +86,4 @@ function wrapText (context, text, x, y, maxWidth, lineHeightRatio, fromBottom, f
 
 top.addEventListener('keyup', draw)
 bottom.addEventListener('keyup', draw)
-submit.addEventListener('click', function (e) {
-  e.preventDefault()
-  $.post('https://steemit.lol/photos/images/', {image: canvas.toDataURL()}, function (data) {
-    image.value = data.filename
-    form.submit()
-  })
-})
 draw()

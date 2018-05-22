@@ -5,11 +5,23 @@ var Meme = function () {
     return self.c.toDataURL()
   }
 
+  self.getObjects = function () {
+    return JSON.stringify(self.objects);
+  }
+
   self.draft = function () {
     return JSON.stringify(self.c.toJSON())
   }
 
   self.addSticker = function (url) {
+    if(!self.objects.stickers){
+      self.objects.stickers=[];
+    }
+    var newSticker={
+      "id":self.objects.stickers.length,
+      "url":url
+    }
+    self.objects.stickers.push(newSticker);
     fabric.Image.fromURL(url, function (img) {
       var scale = 50 / img.height
       img.scale(scale)
@@ -55,6 +67,9 @@ var Meme = function () {
   self.init = function (id, width = 500) {
     self.c = new fabric.Canvas(id)
     self.width = width
+    self.objects={
+      stickers:null
+    }
     window.onkeyup = function (ev) {
       switch (ev.keyCode) {
         case 46:
