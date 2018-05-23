@@ -1,6 +1,5 @@
 # Memeit.LOL
-Memeit.LOL is an app made to easily onboard users to Steemit.com using a friendly user view and fun, profitable content. Our generator is easy to use to create original memes and post them to the Steem Blockchain.  
-Bring your dankest original memes and get published today!
+Made to easily onboard users to Steemit.com using a friendly user view and fun, profitable content. Our generator is easy to use to create original memes and post them to the Steem Blockchain. Memes are curated by an open team of moderators for 24 hours.
 
 ## How to Contribute
 
@@ -42,8 +41,16 @@ Create a post on www.utopian.io containing detailed information on your New Deve
    * Memegenerator Post Creator <sup>(Finished)</sup>
    * Add Delegator Reward System <sup>(Finished)</sup>
    * Change Meme Voting to Slider 10% to 100%
-   * Add Moderators System [Development Discussion](https://github.com/memeit-lol/memeit.lol/issues/9)
-   * Add VoteBot (Upvote Published Posts Only) 
+   * Add Moderators System <sup>(In Progress)</sup>
+   * Add VoteBot <sup>(Finished)</sup> 
+   * New Stickers to keep people entertained (done)
+   * New UI
+   * Launch Steem Blockchain Database Sync 
+   * Memeit Caption Contests
+   * Add EXP System
+   * Organize stickers into packages
+   * Memeit P2P Voting Market
+   * Memeit P2P Content Market
 
 ## Setup for Testing
 - install node.js & NPM - [https://nodejs.org/en/](https://nodejs.org/en/)
